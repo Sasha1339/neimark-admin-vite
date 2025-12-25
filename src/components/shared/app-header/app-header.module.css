@@ -1,0 +1,24 @@
+.header {
+    height: var(--height-header);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-sizing: border-box;
+    position: absolute;
+    z-index: var(--header);
+    background-color: var(--color-header);
+    box-shadow: 0 10px 10px var(--color-shadow);
+}
+
+.main {
+    width: 100vw;
+    height: 100vh;
+    padding-top: var(--height-header);
+    box-sizing: border-box;
+}
+
+.logo {
+    height: 45px;
+}

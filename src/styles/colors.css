@@ -1,0 +1,10 @@
+:root {
+
+    --main-background: #233346;
+    --color-header: rgba(40, 46, 57, 0.75);
+    --color-panel:  rgba(40, 46, 57, 0.75);
+    --color-shadow: rgba(0, 0, 0, 0.25);
+    --color-white-text: #ffffff;
+    --color-active-text: #FD9968;
+
+}
