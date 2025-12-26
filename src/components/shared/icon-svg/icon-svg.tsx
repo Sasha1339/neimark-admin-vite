@@ -7,6 +7,7 @@ interface IconProps extends SVGProps<SVGSVGElement> {
   name: string;
   color?: keyof typeof colors;
   size?: number | string;
+  rotate?: number;
   className?: string;
 }
 
@@ -39,6 +40,7 @@ export const IconSvg: FC<IconProps> = ({
                                      size = 30,
                                      className = '',
                                          color,
+                                        rotate,
                                      ...props
                                    }) => {
   const IconComponent = icons[name];
@@ -55,6 +57,7 @@ export const IconSvg: FC<IconProps> = ({
       width={`${size}`}
       height={`${size}`}
       fill={color && colors[color]}
+      transform={rotate ? `rotate(${rotate})` : ''}
       {...props}
     />
 

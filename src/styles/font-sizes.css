@@ -2,8 +2,9 @@
 
     --main-font-family: 'Bifrom';
 
-    --title-panel: 32px;
-    --link-panel: 20px;
+    --font-size-title-panel: 32px;
+    --font-size-link-panel: 20px;
+    --font-size-button-panel: 16px;
 
 
 }

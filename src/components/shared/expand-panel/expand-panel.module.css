@@ -8,7 +8,6 @@
 
 .panel_navigation {
     height: 100%;
-    transition: 1s;
     background-color: var(--color-panel);
     box-shadow: 10px 0 10px var(--color-shadow);
     display: flex;
@@ -18,11 +17,13 @@
     box-sizing: border-box;
     justify-content: space-between;
     gap: 50px;
+    position: relative;
+    z-index: 2;
 }
 
 .panel_sub_navigation {
     height: 100%;
-    transition: 1s;
+    width: 60px;
     background-color: var(--color-panel);
     box-shadow: 10px 0 10px var(--color-shadow);
     display: flex;
@@ -31,12 +32,16 @@
     padding: 15px;
     box-sizing: border-box;
     justify-content: start;
-    gap: 50px;
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
 }
 
 .window {
     flex: 1;
     transition: 1.2s;
+    position: relative;
+    z-index: 1;
 }
 
 .up_icon {
@@ -56,7 +61,7 @@
 }
 
 .title {
-    font-size: var(--title-panel);
+    font-size: var(--font-size-title-panel);
     font-family: 'Biform', sans-serif;
     white-space: nowrap;
     overflow: hidden;
@@ -65,7 +70,7 @@
 }
 
 .link {
-    font-size: var(--link-panel);
+    font-size: var(--font-size-link-panel);
     font-family: 'Biform', sans-serif;
     white-space: nowrap;
     overflow: hidden;
@@ -98,6 +103,16 @@
     align-items: center;
     width: 100%;
     flex: 1;
+}
+
+.body_panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    width: 100%;
+    height: calc(100% - 42px);
+    transition: 1s;
 }
 
 .links_navigation {
