@@ -2,6 +2,9 @@ import type {FC} from "react";
 import {ExpandPanel} from "@/components/shared/expand-panel/expand-panel.tsx";
 import {ListPanelNode} from "@/components/publications/list-panel-node/list-panel-node.tsx";
 import {ListPanel} from "@/components/shared/list-panel/list-panel.tsx";
+import {InputEditor} from "@/components/shared/input-editor/input-editor.tsx";
+import {PublicationsForm} from "@/components/form/publications-form/publications-form.tsx";
+import {useForm} from "react-hook-form";
 
 const data = [
   {
@@ -46,9 +49,28 @@ const data = [
   }
 ]
 
+const images = [
+  '746fdd4f-af3d-4203-95d7-63f15b000002',
+  '746fdd4f-af3d-4203-95d7-63f15b000002',
+  '746fdd4f-af3d-4203-95d7-63f15b000002',
+  '746fdd4f-af3d-4203-95d7-63f15b000002',
+  '746fdd4f-af3d-4203-95d7-63f15b000002',
+  '746fdd4f-af3d-4203-95d7-63f15b000002'
+]
+
 type Page = {}
 
 export const PublicationsPage: FC<Page> = ({...props}) => {
+
+  const { control, handleSubmit } = useForm({
+    defaultValues: {
+        title: '',
+        category: '',
+        description: '',
+        date: '', // 2027-02-17T07:00:00.000Z,
+        files: []
+    }
+  });
   
   return (
     <ExpandPanel expandWidth={650} headerTitle={'Все публикации'}
@@ -59,7 +81,7 @@ export const PublicationsPage: FC<Page> = ({...props}) => {
                       ))}
                     </ListPanel>
                 }>
-
+    <PublicationsForm mode={'create'} control={control} images={images} />
     </ExpandPanel>
   )
   

@@ -1,6 +1,7 @@
 :root {
 
     --main-background: #233346;
+    --main-gray: rgba(40, 46, 57, 1);
     --color-header: rgba(40, 46, 57, 0.75);
     --color-panel:  rgba(40, 46, 57, 0.75);
     --color-shadow: rgba(0, 0, 0, 0.25);
@@ -9,9 +10,18 @@
     --color-main-purple: #8E92FB;
     --color-main-red: #ff0000;
 
-
+    --color-white-text-opacity-25: rgba(255, 255, 255, 0.25);
     --color-white-text-opacity-50: rgba(255, 255, 255, 0.5);
     --color-white-text-opacity-10: rgba(255, 255, 255, 0.1);
     --color-white-text-opacity-90: rgba(255, 255, 255, 0.9);
+    --color-active-text-opacity-50: rgba(253, 153, 104, 0.5);
+    --color-active-text-opacity-75: rgba(253, 153, 104, 0.75);
+    --color-active-text-opacity-25: rgba(253, 153, 104, 0.25);
+    --color-main-purple-opacity-50: rgba(142, 146, 251, 0.5);
+    --color-main-purple-opacity-75: rgba(142, 146, 251, 0.75);
+    --color-main-gray-opacity-50: rgba(35, 51, 70, 0.5);
 
+    --gradient-gray-0-100: linear-gradient(transparent, var(--main-background));
+    --gradient-gray-0-50: linear-gradient(transparent, var(--main-background) 50%);
+    --gradient-gray-0-25: linear-gradient(transparent, var(--main-background) 25%);
 }

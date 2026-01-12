@@ -44,6 +44,13 @@
     z-index: 1;
 }
 
+.buttons_panel {
+    flex: 1;
+    transition: 1.2s;
+    position: relative;
+    z-index: 1;
+}
+
 .up_icon {
     width: 100%;
     display: flex;
