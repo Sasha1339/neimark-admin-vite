@@ -1,4 +1,4 @@
-import {type FC, type SVGProps} from "react";
+import {type FC, type SVGProps, useEffect, useRef} from "react";
 import {colors} from "@/shared/colors.ts";
 import styles from './icon-svg.module.css';
 

@@ -1,0 +1,26 @@
+.main {
+    width: 100%;
+    font-family: Biform, sans-serif;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--color-white-text-opacity-50);
+    padding: 10px 0;
+    box-sizing: border-box;
+}
+
+.description {
+    text-align: left;
+    color: var(--color-active-text);
+    font-size: var(--font-size-form-input);
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+}

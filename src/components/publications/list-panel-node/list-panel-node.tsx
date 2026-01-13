@@ -1,5 +1,6 @@
 import type {FC} from "react";
 import styles from './list-panel-node.module.css';
+import {Button} from "@/components/shared/button/button.tsx";
 
 type Props = {
   title: string;
@@ -19,8 +20,8 @@ export const ListPanelNode: FC<Props> = ({title, type, date, ...props}) => {
         <div className={styles.type}>{type}</div>
       </div>
       <div className={styles.buttons}>
-        <div className={styles.edit}>Редактировать</div>
-        <div className={styles.delete}>Удалить</div>
+        <Button title={'Редактировать'} size={'small'} color={'main-purple'} />
+        <Button title={'Удалить'} size={'small'} color={'main-red'} />
       </div>
     </div>
   )

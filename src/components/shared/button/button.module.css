@@ -35,11 +35,14 @@
 
 .red_color {
     border: 1px solid var(--color-main-red);
-    color: var(--color-main-red);
+    color: var(--color-white-text);
+    background: var(--color-main-red);
 }
 
-.purple_color:hover {
-    background: var(--color-main-red);
+.red_color:hover {
+    background: var(--color-white-text);
+    color: var(--color-main-red);
+
 }
 
 .orange_color {
@@ -47,7 +50,7 @@
     color: var(--color-active-text);
 }
 
-.purple_color:hover {
+.orange_color:hover {
     background: var(--color-active-text);
 }
 

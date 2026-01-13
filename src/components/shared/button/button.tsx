@@ -16,6 +16,7 @@ export const Button: FC<Props> = ({
                                     onClick,
                                     color,
                                     disabled = false,
+
                                     size = 'large',
                                     ...props
                                   }) => {

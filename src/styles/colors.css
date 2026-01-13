@@ -2,9 +2,11 @@
 
     --main-background: #233346;
     --main-gray: rgba(40, 46, 57, 1);
+    --main-gray-panel: #262f3c;
     --color-header: rgba(40, 46, 57, 0.75);
     --color-panel:  rgba(40, 46, 57, 0.75);
     --color-shadow: rgba(0, 0, 0, 0.25);
+    --color-shadow-50: rgba(0, 0, 0, 0.50);
     --color-white-text: #ffffff;
     --color-active-text: #FD9968;
     --color-main-purple: #8E92FB;

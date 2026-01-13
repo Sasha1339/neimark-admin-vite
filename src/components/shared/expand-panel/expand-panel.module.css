@@ -3,7 +3,6 @@
     height: 100%;
     display: flex;
     flex-direction: row;
-
 }
 
 .panel_navigation {
@@ -34,6 +33,7 @@
     justify-content: start;
     position: relative;
     z-index: 2;
+    gap: 10px;
     overflow: hidden;
 }
 
@@ -118,6 +118,7 @@
     justify-content: space-between;
     align-items: start;
     width: 100%;
+    overflow: hidden;
     height: calc(100% - 42px);
     transition: 1s;
 }

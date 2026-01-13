@@ -57,8 +57,8 @@ export const FileEditor: FC<Props> = ({
           />
           {error || `Добавить`}
         </label>}
-        {imagesId && imagesId.length > 0 && imagesId.map((e) => (
-          <div className={styles.image_wrapper}>
+        {imagesId && imagesId.length > 0 && imagesId.map((e, i) => (
+          <div key={i} className={styles.image_wrapper}>
             <img className={styles.image} src={withUrlImages(e)}/>
           </div>
         ))}

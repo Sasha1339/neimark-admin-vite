@@ -75,7 +75,7 @@ export const PublicationsPage: FC<Page> = ({...props}) => {
   return (
     <ExpandPanel expandWidth={650} headerTitle={'Все публикации'}
                  bodyPanel={
-                    <ListPanel>
+                    <ListPanel width={600}>
                       {data.map((e, i) => (
                         <ListPanelNode title={e.title} date={e.date} type={e.type} key={i} />
                       ))}
