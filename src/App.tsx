@@ -3,6 +3,7 @@ import {AppHeader} from "@/components/shared/app-header/app-header.tsx";
 import {Route, Routes} from "react-router-dom";
 import {PublicationsPage} from "@/pages/publications-page/publications-page.tsx";
 import {StudentsPage} from "@/pages/students-page/students-page.tsx";
+import {DocumentsPage} from "@/pages/documents-page/documents-page.tsx";
 
 function App() {
 
@@ -12,7 +13,7 @@ function App() {
         <Route path="/" element={<></>} />
         <Route path="/publications" element={<PublicationsPage/>} />
         <Route path="/students" element={<StudentsPage/>} />
-
+        <Route path="/documents" element={<DocumentsPage/>} />
       </Routes>
     </AppHeader>
   )

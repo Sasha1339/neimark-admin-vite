@@ -31,6 +31,7 @@
 
 .purple_color:hover {
     background: var(--color-main-purple);
+    color: var(--color-white-text);
 }
 
 .red_color {
@@ -42,6 +43,17 @@
 .red_color:hover {
     background: var(--color-white-text);
     color: var(--color-main-red);
+
+}
+
+.green_color {
+    border: 1px solid var(--color-main-green);
+    color: var(--color-main-green);
+}
+
+.green_color:hover {
+    background: var(--color-main-green);
+    color: var(--color-white-text);
 
 }
 

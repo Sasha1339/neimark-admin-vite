@@ -29,6 +29,7 @@ export const Button: FC<Props> = ({
           {[styles.purple_color]: color === 'main-purple'},
           {[styles.orange_color]: color === 'main-active'},
           {[styles.red_color]: color === 'main-red'},
+          {[styles.green_color]: color === 'main-green'},
           {[styles.medium_size]: size === 'medium'},
           {[styles.small_size]: size === 'small'}
         )

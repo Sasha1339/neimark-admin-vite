@@ -70,4 +70,5 @@
     background-color: var(--main-gray-panel);
     bottom: 0;
     z-index: 10;
+    border-top: 1px solid var(--color-white-text);
 }

@@ -79,11 +79,14 @@ export const StudentsPage: FC<Page> = ({...props}) => {
   });
 
   const filterStudents = (e: {name: string, description: string}) => {
-    return search.includes(e.name) || search.includes(e.description) || search === '';
+    const searchCase = search.toLowerCase();
+    const nameCase = e.name.toLowerCase();
+    const descriptionCase = e.description.toLowerCase();
+    return searchCase.includes(nameCase) || searchCase.includes(descriptionCase) || searchCase === '' || nameCase.includes(searchCase) || descriptionCase.includes(searchCase);
   }
   
   return (
-    <ExpandPanel expandWidth={650} headerTitle={'Все публикации'}
+    <ExpandPanel expandWidth={650} headerTitle={'Студенты'}
                  bodyPanel={
                     <ListPanel isSearching={true} onSearchChange={(e) => setSearch(e)} width={400} isNewButton={true} titleNewButton={'Добавить студента'}>
                       {data.filter(filterStudents).map((e, i) => (

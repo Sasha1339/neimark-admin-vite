@@ -3,5 +3,7 @@ export const colors = {
   'main-black': '#000000',
   'main-red': '#ff0000',
   'main-purple': '#8E92FB',
-  'main-active': '#FD9968'
+  'main-active': '#FD9968',
+  'main-green': '#26E400',
+
 }
