@@ -1,4 +1,4 @@
-import type {Student} from "@/shared/types.ts";
+import type {Room, Student} from "@/shared/types.ts";
 
 export const withUrlImages = (id: string) => {
   return `https://resto-mate.ru/images/api/v1/images?fileName=${id}`;
@@ -16,3 +16,7 @@ export function formatDate(line: string): string {
 export const getFullName = (student: Student) => {
   return `${student.firstname} ${student.lastname}` + (student.patronymic ?? '');
 };
+
+export const getNameRoom = (room: Room) => {
+  return `Корпус ${room.building}, комната ${room.number}`
+}

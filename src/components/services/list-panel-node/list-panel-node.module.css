@@ -1,0 +1,40 @@
+.main {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    font-family: Biform, sans-serif;
+    background-color: var(--color-white-text-opacity-10);
+}
+
+.main:hover, .active {
+    background-color: var(--color-white-text-opacity-90);
+}
+
+
+.title {
+    font-size: var(--font-size-form-input);
+    color: var(--color-white-text);
+    transition: 0.5s;
+}
+
+.icon {
+    fill: var(--color-white-text) !important;
+    transition: 0.5s;
+}
+
+
+.main:hover .title,
+.active .title {
+    color: var(--main-gray);
+}
+
+.main:hover .icon,
+.active .icon{
+    fill: var(--main-gray) !important;
+}
+

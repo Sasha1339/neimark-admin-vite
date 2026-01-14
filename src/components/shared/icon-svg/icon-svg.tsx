@@ -56,7 +56,7 @@ export const IconSvg: FC<IconProps> = ({
       className={`${styles.main} ${className}`}
       width={`${size}`}
       height={`${size}`}
-      fill={color && colors[color]}
+      fill={color ? colors[color] : colors['main-white']}
       transform={rotate ? `rotate(${rotate})` : ''}
       {...props}
     />

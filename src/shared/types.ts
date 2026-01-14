@@ -24,5 +24,12 @@ export interface Student {
   building?: string;
   room?: string;
   additionally?: string;
+}
 
+export interface Room {
+  id: string;
+  number: number;
+  building: number;
+  date: string;
+  status: string;
 }

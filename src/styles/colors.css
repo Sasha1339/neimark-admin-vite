@@ -25,6 +25,7 @@
     --color-main-purple-opacity-75: rgba(142, 146, 251, 0.75);
     --color-main-gray-opacity-50: rgba(35, 51, 70, 0.5);
     --color-main-gray-opacity-75: rgba(35, 51, 70, 0.75);
+    --color-main-gray-opacity-70: rgba(40, 46, 57, 0.70);
 
     --gradient-gray-0-100: linear-gradient(transparent, var(--main-background));
     --gradient-gray-0-50: linear-gradient(transparent, var(--main-background) 50%);

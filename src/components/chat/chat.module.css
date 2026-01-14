@@ -1,0 +1,145 @@
+.main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    overflow-x: hidden;
+    overflow-y: auto;
+    flex-direction: column;
+    padding: 10px 10px 100px;
+    box-sizing: border-box;
+}
+
+.message {
+    max-width: 300px;
+    background-color: var(--color-white-text-opacity-10);
+    color: var(--color-white-text);
+    font-family: Biform, sans-serif;
+    font-size: var(--font-size-form-error);
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.message_right {
+    width: 100%;
+    padding: 3px 10px 3px 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    box-sizing: border-box;
+}
+
+.message_left {
+    width: 100%;
+    padding: 3px 30px 3px 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    box-sizing: border-box;
+}
+
+.input {
+    width: 100%;
+    padding: 10px 20px 30px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    box-sizing: border-box;
+    background-color: var(--main-gray-panel);
+    z-index: 10;
+    box-shadow: 0 -10px 10px var(--color-shadow);
+    position: absolute;
+    bottom: 0;
+}
+
+.icon {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.icon:active {
+    transform: scale(1.04) !important;
+}
+
+.input__line {
+    flex: 1;
+    font-family: Biform, sans-serif;
+    font-size: var(--font-size-form-input);
+    background-color: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid var(--color-white-text);
+    color: var(--color-white-text);
+}
+
+.options {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 5;
+    box-sizing: border-box;
+    padding-bottom: 70px;
+}
+
+.wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    /*background-color: var(--color-main-gray-opacity-70);*/
+    backdrop-filter: blur(20px);
+    mask: linear-gradient(
+            to bottom,
+            transparent 0%,
+            rgba(0, 0, 0, 0.95) 25%,
+            rgba(0, 0, 0, 1) 100%
+    );
+}
+
+.list_options {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px 20px 50px;
+    box-sizing: border-box;
+}
+
+.title {
+    font-family: Biform, sans-serif;
+    font-size: var(--font-size-form-label);
+    color: var(--color-white-text);
+    text-align: right;
+}
+
+.option {
+    font-family: Biform, sans-serif;
+    font-size: var(--font-size-form-input);
+    color: var(--color-white-text-opacity-50);
+    text-align: right;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.option:hover {
+    color: var(--color-active-text);
+}
