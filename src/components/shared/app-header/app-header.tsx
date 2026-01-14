@@ -31,8 +31,7 @@ export const AppHeader: FC<Props & PropsWithChildren> = ({children, ...props}) =
         </div>
       </header>
       <main className={styles.main}>
-        <ExpandPanel expandWidth={300} links={links} onClick={(link) => {navigate(`/${link}`);
-          console.log(link);}}>
+        <ExpandPanel expandWidth={300} links={links} onClick={(link) => {navigate(`/${link}`)}}>
           {children}
         </ExpandPanel>
       </main>

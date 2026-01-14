@@ -2,6 +2,8 @@ import {type FC, type PropsWithChildren, type ReactNode, useEffect, useRef, useS
 import styles from './expand-panel.module.css';
 import {IconSvg} from "@/components/shared/icon-svg/icon-svg.tsx";
 import {gsap} from 'gsap';
+import {useLocation} from "react-router-dom";
+import clsx from "clsx";
 
 type Props = {
   expandWidth: number;
@@ -14,7 +16,8 @@ type Props = {
 export const ExpandPanel: FC<Props & PropsWithChildren> = ({expandWidth, onClick, bodyPanel, headerTitle, children, links, ...props}) => {
 
   const [expanded, setExpanded] = useState(true);
-  const panel = useRef<HTMLDivElement>(null)
+  const panel = useRef<HTMLDivElement>(null);
+  const location = useLocation();
 
   useEffect(() => {
 
@@ -39,7 +42,7 @@ export const ExpandPanel: FC<Props & PropsWithChildren> = ({expandWidth, onClick
         {!headerTitle ? <div className={styles.body_navigation}>
           <div className={styles.links_navigation}>
             {links && Object.entries(links).map((e, i) => (
-              <div className={styles.icon_with_title} key={i}  onClick={() => onClick?.(e[0])}>
+              <div className={clsx(styles.icon_with_title, {[styles.icon_with_title_active]: location.pathname.includes(e[0])})} key={i}  onClick={() => onClick?.(e[0])}>
                 <IconSvg name={e[0]} color={'main-white'}/>
                 <div className={styles.link}>{e[1]}</div>
               </div>

@@ -9,10 +9,11 @@ type Props = {
   placeholder?: string;
   titleNewButton?: string;
   onSearchChange?: (value: string) => void;
+  onClickNewButton?: () => void;
   width?: number;
 }
 
-export const ListPanel: FC<Props & PropsWithChildren> = ({children, placeholder, titleNewButton, isNewButton = false, width = 300, onSearchChange, isSearching = false, ...props}) => {
+export const ListPanel: FC<Props & PropsWithChildren> = ({children, onClickNewButton, placeholder, titleNewButton, isNewButton = false, width = 300, onSearchChange, isSearching = false, ...props}) => {
 
   const onChange = (e: ChangeEvent<HTMLInputElement> ) => {
     onSearchChange?.(e.target.value);
@@ -27,7 +28,7 @@ export const ListPanel: FC<Props & PropsWithChildren> = ({children, placeholder,
         {children}
       </div>
       {isNewButton && <div className={styles.button_panel}>
-        <Button title={titleNewButton ?? 'Добавить новое'} size={'small'} />
+        <Button title={titleNewButton ?? 'Добавить новое'} size={'small'} onClick={onClickNewButton} />
       </div>}
     </div>
 

@@ -44,7 +44,7 @@
 }
 
 .main_error {
-    color: var(--color-main-red);
+    color: var(--color-main-error);
     font-size: var(--font-size-form-error);
 }
 

@@ -13,12 +13,14 @@ export interface Props {
   onBlur?: () => void;
   label?: string;
   options: SelectOption[];
+  error?: string;
 }
 
 export const SelectEditor: FC<Props> = ({
                                           value, onBlur, onChange,
                                           options,
                                           label,
+                                          error,
                                           ...props
                                         }) => {
 
@@ -32,9 +34,11 @@ export const SelectEditor: FC<Props> = ({
       <div className={styles.main_options}>
         {options.map((e) => (
           <div key={e.value}
-               className={clsx(styles.main_option, {[styles.main_option_active]: e.value === value})} onClick={() => onChangeValue(e.value)}>{e.label}</div>
+               className={clsx(styles.main_option, {[styles.main_option_active]: e.value === value})}
+               onClick={() => onChangeValue(e.value)}>{e.label}</div>
         ))}
       </div>
+      {error && <div className={styles.main_error}>{error}</div>}
     </div>
   );
 };

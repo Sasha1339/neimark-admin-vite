@@ -12,11 +12,13 @@ import {Button} from "@/components/shared/button/button.tsx";
 type Props = {
   mode: 'create' | 'update';
   control: Control<any>;
-  images: string[]
+
+  images: string[],
+  onPublic: () => void;
 }
 
 
-export const PublicationsForm: FC<Props> = ({mode, control, images, ...props}) => {
+export const PublicationsForm: FC<Props> = ({mode, onPublic, control, images, ...props}) => {
 
   const options = useMemo(() => ([{value: 'news', label: 'Новости'}, {value: 'events', label: 'События'}, {
     value: 'post',
@@ -34,30 +36,30 @@ export const PublicationsForm: FC<Props> = ({mode, control, images, ...props}) =
           </div>
         </div>
         <div className={styles.main_field}>
-          <Controller name={'title'} control={control} render={({field}) => (
-            <InputEditor {...field} label={'Заголовок'} placeholder={'Введите заголовок публикации'}/>
+          <Controller name={'title'} control={control} render={({field, fieldState}) => (
+            <InputEditor {...field} label={'Заголовок'} error={fieldState.error?.message?.toString()} placeholder={'Введите заголовок публикации'}/>
           )}/>
         </div>
         <div className={styles.main_field}>
-          <Controller name={'category'} control={control} render={({field}) => (
-            <SelectEditor options={options} {...field} label={'Категории'}/>
+          <Controller name={'category'} control={control} render={({field, fieldState}) => (
+            <SelectEditor  error={fieldState.error?.message?.toString()} options={options} {...field} label={'Категории'}/>
           )}/>
         </div>
         <div className={clsx(styles.main_field, styles.two_column)}>
-          <Controller name={'description'} control={control} render={({field}) => (
-            <TextareaEditor {...field} label={'Описание'}
+          <Controller name={'description'} control={control} render={({field, fieldState}) => (
+            <TextareaEditor {...field} label={'Описание'} error={fieldState.error?.message?.toString()}
                             placeholder={'Опишите событие, поделитесь деталями или добавьте полезные ссылки'}/>
           )}/>
         </div>
         <div className={clsx(styles.two_column)}>
-          <Controller name={'date'} control={control} render={({field}) => (
-            <DateEditor {...field} label={'Дата публикации'}
+          <Controller name={'date'} control={control} render={({field, fieldState}) => (
+            <DateEditor {...field} label={'Дата публикации'} error={fieldState.error?.message?.toString()}
                         description={'Новость появится в ленте утром выбранного дня'}/>
           )}/>
         </div>
         <div className={clsx(styles.main_field, styles.two_column)}>
-          <Controller name={'files'} control={control} render={({field}) => (
-            <FileEditor {...field} label={'Фотографии'} imagesId={images}
+          <Controller name={'files'} control={control} render={({field, fieldState}) => (
+            <FileEditor {...field} label={'Фотографии'} imagesId={images} error={fieldState.error?.message?.toString()}
                         description={'Можно прикрепить до 6 фотографий (формат .jpg или .png)'}/>
           )}/>
         </div>
@@ -65,7 +67,7 @@ export const PublicationsForm: FC<Props> = ({mode, control, images, ...props}) =
 
       </div>
       <div className={styles.button_panel}>
-        <Button title={'Опубликовать'} size={'small'} />
+        <Button title={'Опубликовать'} size={'small'} onClick={onPublic} />
       </div>
     </>
   )

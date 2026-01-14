@@ -9,6 +9,7 @@
     color: var(--color-white-text);
     gap: 10px;
     transition: 0.5s;
+    white-space: nowrap;
 }
 
 .medium_size {

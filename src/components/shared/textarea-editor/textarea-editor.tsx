@@ -4,11 +4,13 @@ import clsx from "clsx";
 
 export interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string;
+  error?: string
 }
 
 export const TextareaEditor: FC<Props> = ({
                                             label,
                                             disabled = false,
+                                            error,
                                             ...props
                                           }) => {
 
@@ -30,6 +32,7 @@ export const TextareaEditor: FC<Props> = ({
           className={styles.main_input}
         />
       </div>
+      {error && <div className={styles.main_error}>{error}</div>}
     </div>
   );
 };

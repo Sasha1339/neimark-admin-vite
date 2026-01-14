@@ -11,6 +11,7 @@ import {DryCleaner} from "@/components/services/dry-cleaner/dry-cleaner.tsx";
 import {Linen} from "@/components/services/linen/linen.tsx";
 import {Laundry} from "@/components/services/laundry/laundry.tsx";
 import {Master} from "@/components/services/master/master.tsx";
+import {CreatePublication} from "@/components/publications/create-publication/create-publication.tsx";
 
 function App() {
 
@@ -18,7 +19,9 @@ function App() {
     <AppHeader >
       <Routes>
         <Route path="/" element={<></>} />
-        <Route path="publications" element={<PublicationsPage/>} />
+        <Route path="publications" element={<PublicationsPage/>} >
+          <Route path="new" element={<CreatePublication/>} />
+        </Route>
         <Route path="students" element={<StudentsPage/>} />
         <Route path="documents" element={<DocumentsPage/>} />
         <Route path="services" element={<ServicesPage/>} >

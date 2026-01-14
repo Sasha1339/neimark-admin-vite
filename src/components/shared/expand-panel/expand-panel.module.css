@@ -95,11 +95,11 @@
     cursor: pointer;
 }
 
-.icon_with_title:hover > .title, .icon_with_title:hover > .link {
+.icon_with_title:hover > .title, .icon_with_title:hover > .link, .icon_with_title_active > .link, .icon_with_title_active > .title {
     color: var(--color-active-text);
 }
 
-.icon_with_title:hover svg {
+.icon_with_title:hover svg, .icon_with_title_active svg {
     fill: var(--color-active-text);
 }
 

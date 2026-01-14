@@ -50,11 +50,11 @@ export const FileEditor: FC<Props> = ({
           className={clsx(styles.file__upload, {
             [styles.file__upload__error]: error
           })}>
-          <IconSvg
+          {!error && <IconSvg
             color={'main-white'}
             name={'documents'}
             size={30}
-          />
+          />}
           {error || `Добавить`}
         </label>}
         {imagesId && imagesId.length > 0 && imagesId.map((e, i) => (
