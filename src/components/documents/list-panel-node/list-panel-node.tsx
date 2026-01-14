@@ -3,22 +3,25 @@ import styles from './list-panel-node.module.css';
 import type {DocumentData} from "@/shared/types.ts";
 import {formatDate, getFullName} from "@/shared/functions.ts";
 import {Button} from "@/components/shared/button/button.tsx";
+import clsx from "clsx";
 
 type Props = {
-  documentData: DocumentData;
+  documentData: DocumentData
+  active: boolean;
+  onSelect: (name: string) => void;
 }
 
-export const ListPanelNode: FC<Props> = ({documentData, ...props}) => {
+export const ListPanelNode: FC<Props> = ({documentData, onSelect, active, ...props}) => {
 
   return (
-    <div className={styles.main}>
+    <div className={clsx(styles.main, {[styles.active]: active})}>
       <div className={styles.description}>
         <div className={styles.description_column}>
           <div className={styles.signature}>Документ</div>
           <div className={styles.name}>{documentData.name}</div>
         </div>
 
-        <Button title={'Посмотреть'} size={'small'} color={'main-purple'} />
+        <Button title={'Посмотреть'} size={'small'} color={'main-purple'} onClick={() => onSelect(documentData.file)} />
       </div>
       <div className={styles.description}>
         <div className={styles.description_column}>

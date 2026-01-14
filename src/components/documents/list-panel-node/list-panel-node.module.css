@@ -10,27 +10,32 @@
     font-family: Biform, sans-serif;
 }
 
-.main:hover {
+.main:hover,.active {
     background-color: var(--color-white-text-opacity-90);
 }
 
-.main:hover .student {
+.main:hover .student,
+.active .student {
     color: var(--main-gray);
 }
 
-.main:hover .name {
+.main:hover .name,
+.active .name {
     color: var(--main-gray);
 }
 
-.main:hover .email {
+.main:hover .email,
+.active .email {
     color: var(--color-main-gray-opacity-50);
 }
 
-.main:hover .date  {
+.main:hover .date,
+.active .date  {
     color: var(--main-gray);
 }
 
-.main:hover .signature  {
+.main:hover .signature,
+.active .signature  {
     color: var(--color-main-gray-opacity-75);
 }
 

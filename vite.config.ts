@@ -11,6 +11,13 @@ export default defineConfig({
     port: 5173,
     strictPort: true,
     allowedHosts: [],
+    proxy: {
+      '/documents-library/api': {
+        target: 'https://localhost:3000',
+        changeOrigin: true,
+        secure: false
+      }
+    }
   },
   build: {
     outDir: 'build'

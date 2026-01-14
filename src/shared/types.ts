@@ -5,6 +5,7 @@ export interface DocumentForm {
 
 export interface DocumentData extends DocumentForm {
   status: string;
+  file: string;
   student: Student;
 }
 
