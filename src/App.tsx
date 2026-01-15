@@ -12,6 +12,7 @@ import {Linen} from "@/components/services/linen/linen.tsx";
 import {Laundry} from "@/components/services/laundry/laundry.tsx";
 import {Master} from "@/components/services/master/master.tsx";
 import {CreatePublication} from "@/components/publications/create-publication/create-publication.tsx";
+import {EditPublication} from "@/components/publications/edit-publication/edit-publication.tsx";
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/" element={<></>} />
         <Route path="publications" element={<PublicationsPage/>} >
           <Route path="new" element={<CreatePublication/>} />
+          <Route path=":id" element={<EditPublication/>} />
         </Route>
         <Route path="students" element={<StudentsPage/>} />
         <Route path="documents" element={<DocumentsPage/>} />

@@ -8,6 +8,7 @@ import {TextareaEditor} from "@/components/shared/textarea-editor/textarea-edito
 import {DateEditor} from "@/components/shared/date-editor/date-editor.tsx";
 import {FileEditor} from "@/components/shared/file-editor/file-editor.tsx";
 import {Button} from "@/components/shared/button/button.tsx";
+import {PublicationCategory} from "@/shared/publications/types.ts";
 
 type Props = {
   mode: 'create' | 'update';
@@ -20,8 +21,8 @@ type Props = {
 
 export const PublicationsForm: FC<Props> = ({mode, onPublic, control, images, ...props}) => {
 
-  const options = useMemo(() => ([{value: 'news', label: 'Новости'}, {value: 'events', label: 'События'}, {
-    value: 'post',
+  const options = useMemo(() => ([{value: PublicationCategory.NEWS, label: 'Новости'}, {value: PublicationCategory.EVENTS, label: 'События'}, {
+    value: PublicationCategory.POST,
     label: 'Объявления'
   }]), [])
 
@@ -58,8 +59,8 @@ export const PublicationsForm: FC<Props> = ({mode, onPublic, control, images, ..
           )}/>
         </div>
         <div className={clsx(styles.main_field, styles.two_column)}>
-          <Controller name={'files'} control={control} render={({field, fieldState}) => (
-            <FileEditor {...field} label={'Фотографии'} imagesId={images} error={fieldState.error?.message?.toString()}
+          <Controller name={'files'} control={control} render={({field: {onChange, value}, fieldState}) => (
+            <FileEditor files={value} onChangeDelete={(value) => onChange(value)} onChange={(e) => onChange(e && e.target.files && value ? [...e.target.files, ...value] : e && e.target.files ? e.target.files : value)} label={'Фотографии'} imagesId={images} error={fieldState.error?.message?.toString()}
                         description={'Можно прикрепить до 6 фотографий (формат .jpg или .png)'}/>
           )}/>
         </div>

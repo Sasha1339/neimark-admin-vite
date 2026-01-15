@@ -83,6 +83,29 @@
     position: relative;
 }
 
+.image_wrapper:hover .image_overlay {
+    opacity: 1;
+}
+
+.image_overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    top: 0;
+    transition: 0.5s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: var(--font-size-form-label);
+    color: var(--color-white-text);
+    font-family: Biform, sans-serif;
+    cursor: pointer;
+}
+
 .image {
     width: 200px;
     height: 200px;

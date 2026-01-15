@@ -1,4 +1,4 @@
-import {type FC, type InputHTMLAttributes, useMemo} from 'react';
+import {type FC, type InputHTMLAttributes, useEffect, useMemo, useState} from 'react';
 import styles from './file-editor.module.css';
 import {v4 as uuidv4} from 'uuid';
 import clsx from "clsx";
@@ -11,6 +11,7 @@ export interface Props extends InputHTMLAttributes<HTMLInputElement> {
   files?: FileList | null;
   imagesId?: string[];
   disabled?: boolean;
+  onChangeDelete?: (value: File[]) => void;
   error?: string;
 }
 
@@ -19,12 +20,32 @@ export const FileEditor: FC<Props> = ({
                                         description,
                                         files,
                                         imagesId,
+                                        onChangeDelete,
                                         error,
                                         disabled = false,
                                         ...props
                                       }) => {
 
   const id = useMemo(() => (uuidv4()), []);
+  const [fileImages, setFileImages] = useState<string[]>([]);
+
+  useEffect(() => {
+    const images: string[] = []
+    if (files) {
+      Array.from(files).forEach((file) => {
+        images.push(URL.createObjectURL(file))
+      })
+    }
+    setFileImages(images)
+  }, [files]);
+
+  const onDeleteFileByIndex = (index: number) => {
+    if (files) {
+      const filesUpdate = Array.from(files).filter((e, i) => i !== index);
+      onChangeDelete?.(filesUpdate);
+    }
+  }
+
 
   return (
     <div className={styles.main}>
@@ -42,6 +63,8 @@ export const FileEditor: FC<Props> = ({
           {...props}
           id={id}
           type={'file'}
+          multiple={true}
+          accept="image/*"
           disabled={disabled}
           className={styles.main_input}
         />
@@ -57,9 +80,19 @@ export const FileEditor: FC<Props> = ({
           />}
           {error || `Добавить`}
         </label>}
+        {files && Array.from(files).map((e, i) => (
+          <div key={i} className={styles.image_wrapper}>
+            <img className={styles.image} src={URL.createObjectURL(e)}/>
+            <div className={styles.image_overlay} onClick={() => onDeleteFileByIndex(i)}>
+              Удалить
+            </div>
+
+          </div>
+        ))}
         {imagesId && imagesId.length > 0 && imagesId.map((e, i) => (
           <div key={i} className={styles.image_wrapper}>
             <img className={styles.image} src={withUrlImages(e)}/>
+            <div className={styles.image_overlay}>Удалить</div>
           </div>
         ))}
       </div>

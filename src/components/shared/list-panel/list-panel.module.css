@@ -39,7 +39,7 @@
     display: flex;
     justify-content: center;
     align-items: end;
-    border-bottom: 1px solid var(--color-white-text);
+    border-bottom: 1px solid var(--color-white-text-opacity-50);
     box-sizing: border-box;
     padding: 10px 5px 5px;
     box-shadow: 0 10px 10px var(--color-shadow-50);
@@ -71,5 +71,5 @@
     background-color: var(--main-gray-panel);
     bottom: 0;
     z-index: 10;
-    border-top: 1px solid var(--color-white-text);
+    border-top: 1px solid var(--color-white-text-opacity-50);
 }

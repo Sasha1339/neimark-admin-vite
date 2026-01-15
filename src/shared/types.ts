@@ -26,14 +26,6 @@ export interface Student {
   additionally?: string;
 }
 
-export interface Publication {
-  title: string;
-  category: string;
-  description: string;
-  date: string;
-  files: FileList
-}
-
 export interface Room {
   id: string;
   number: number;

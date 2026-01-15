@@ -13,6 +13,11 @@ export function formatDate(line: string): string {
   return date.toLocaleString('ru-RU');
 }
 
+export function formatDateWithoutTime(line: string): string {
+  const date = new Date(line);
+  return date.toLocaleDateString('ru-RU');
+}
+
 export const getFullName = (student: Student) => {
   return `${student.firstname} ${student.lastname}` + (student.patronymic ?? '');
 };
