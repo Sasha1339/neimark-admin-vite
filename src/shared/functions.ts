@@ -1,4 +1,5 @@
-import type {Room, Student} from "@/shared/types.ts";
+import type {Room} from "@/shared/types.ts";
+import type {StudentMainInfo} from "@/shared/students/types.ts";
 
 export const withUrlImages = (id: string) => {
   return `https://resto-mate.ru/images/api/v1/images?fileName=${id}`;
@@ -18,7 +19,7 @@ export function formatDateWithoutTime(line: string): string {
   return date.toLocaleDateString('ru-RU');
 }
 
-export const getFullName = (student: Student) => {
+export const getFullName = (student: StudentMainInfo) => {
   return `${student.firstname} ${student.lastname}` + (student.patronymic ?? '');
 };
 

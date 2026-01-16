@@ -9,15 +9,17 @@
     transition: 0.5s;
 }
 
-.main:hover {
+.main:hover, .active {
     background-color: var(--color-white-text-opacity-90);
 }
 
-.main:hover .name {
+.main:hover .name,
+.active .name {
     color: var(--main-gray);
 }
 
-.main:hover .info {
+.main:hover .info,
+.active .info {
     color: var(--color-main-gray-opacity-50);
 }
 

@@ -2,7 +2,7 @@ import type {FC} from "react";
 import {useForm} from "react-hook-form";
 import {zodResolver} from '@hookform/resolvers/zod';
 import {PublicationsForm} from "@/components/form/publications-form/publications-form.tsx";
-import {createPublicationScheme} from "@/entities/publication.ts";
+import {updatePublicationScheme} from "@/entities/publication.ts";
 import {type Publication, PublicationCategory} from "@/shared/publications/types.ts";
 
 const images = [
@@ -21,7 +21,7 @@ type Props = {
 export const EditPublication: FC<Props> = ({...props}) => {
 
   const { control, handleSubmit } = useForm<Publication>({
-    resolver: zodResolver(createPublicationScheme),
+    resolver: zodResolver(updatePublicationScheme),
     defaultValues: {
       title: 'Информатика - язык будущего, на котором мы говорим уже сегодня!',
       category: PublicationCategory.EVENTS,

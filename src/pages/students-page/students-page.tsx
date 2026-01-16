@@ -5,49 +5,62 @@ import {PublicationsForm} from "@/components/form/publications-form/publications
 import {useForm} from "react-hook-form";
 import {ListPanelNode} from "@/components/students/list-panel-node/list-panel-node.tsx";
 import {StudentsForm} from "@/components/form/students-form/students-form.tsx";
+import {CreateStudent} from "@/components/students/create-student/create-student.tsx";
+import {Outlet, useLocation, useNavigate} from "react-router-dom";
 
 const data = [
   {
+    id: '1',
     name: 'Алексеева Александрина Александоровна',
     description: 'группа 13, Информационные технологии',
   },
   {
+    id: '2',
     name: 'Алексеева Александрина Александоровна',
     description: 'группа 13, Информационные технологии',
   },
   {
+    id: '3',
     name: 'Алексеева Александрина Александоровна',
     description: 'группа 13, Информационные технологии',
   },
   {
+    id: '4',
     name: 'Алексеева Александрина Александоровна',
     description: 'группа 13, Информационные технологии',
   },
   {
+    id: '5',
     name: 'Алексеева Александрина Александоровна',
     description: 'группа 13, Информационные технологии',
   },
   {
+    id: '6',
     name: 'Алексеева Александрина Александоровна',
     description: 'группа 13, Информационные технологии',
   },
   {
+    id: '7',
     name: 'Алексеева Александрина Александоровна',
     description: 'группа 13, Информационные технологии',
   },
   {
+    id: '8',
     name: 'Алексеева Александрина Александоровна',
     description: 'группа 13, Информационные технологии',
   },
   {
+    id: '9',
     name: 'Алексеева Александрина Александоровна',
     description: 'группа 13, Информационные технологии',
   },
   {
+    id: '10',
     name: 'Алексеева Александрина Александоровна',
     description: 'группа 13, Информационные технологии',
   },
   {
+    id: '11',
     name: 'Алексеева Александрина Александоровна',
     description: 'группа 13, Информационные технологии',
   }
@@ -57,26 +70,9 @@ type Page = {}
 
 export const StudentsPage: FC<Page> = ({...props}) => {
 
-  const [search, setSearch] = useState('')
-
-  const { control, handleSubmit } = useForm({
-    defaultValues: {
-        firstname: '',
-        lastname: '',
-        patronymic: '',
-        email: '',
-        phone: '',
-        university: '',
-        faculty: '',
-        direction: '',
-        stream: '',
-        group: '',
-        course: '',
-        building: '',
-        room: '',
-        additionally: '',
-    }
-  });
+  const [search, setSearch] = useState('');
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const filterStudents = (e: {name: string, description: string}) => {
     const searchCase = search.toLowerCase();
@@ -88,13 +84,13 @@ export const StudentsPage: FC<Page> = ({...props}) => {
   return (
     <ExpandPanel expandWidth={650} headerTitle={'Студенты'}
                  bodyPanel={
-                    <ListPanel isSearching={true} onSearchChange={(e) => setSearch(e)} width={400} isNewButton={true} titleNewButton={'Добавить студента'}>
+                    <ListPanel isSearching={true} onSearchChange={(e) => setSearch(e)} width={400} onClickNewButton={() => navigate(`/students/new`)} isNewButton={true} titleNewButton={'Добавить студента'}>
                       {data.filter(filterStudents).map((e, i) => (
-                        <ListPanelNode name={e.name} description={e.description} key={i} />
+                        <ListPanelNode name={e.name} active={location.pathname.includes(e.id)} description={e.description} key={i} onSelect={() => navigate(`/students/${e.id}`)}/>
                       ))}
                     </ListPanel>
                 }>
-    <StudentsForm mode={'create'} control={control} />
+    <Outlet />
     </ExpandPanel>
   )
   

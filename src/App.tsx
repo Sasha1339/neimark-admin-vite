@@ -13,6 +13,8 @@ import {Laundry} from "@/components/services/laundry/laundry.tsx";
 import {Master} from "@/components/services/master/master.tsx";
 import {CreatePublication} from "@/components/publications/create-publication/create-publication.tsx";
 import {EditPublication} from "@/components/publications/edit-publication/edit-publication.tsx";
+import {CreateStudent} from "@/components/students/create-student/create-student.tsx";
+import {EditStudent} from "@/components/students/edit-student/edit-student.tsx";
 
 function App() {
 
@@ -24,7 +26,10 @@ function App() {
           <Route path="new" element={<CreatePublication/>} />
           <Route path=":id" element={<EditPublication/>} />
         </Route>
-        <Route path="students" element={<StudentsPage/>} />
+        <Route path="students" element={<StudentsPage/>} >
+          <Route path="new" element={<CreateStudent/>} />
+          <Route path=":id" element={<EditStudent/>} />
+        </Route>
         <Route path="documents" element={<DocumentsPage/>} />
         <Route path="services" element={<ServicesPage/>} >
           <Route path="cleaning" element={<Cleaning/>} >

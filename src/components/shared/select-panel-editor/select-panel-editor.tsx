@@ -12,6 +12,7 @@ export interface Props {
   onChange?: (value: string) => void;
   onBlur?: () => void;
   label?: string;
+  error?: string;
   options: SelectOption[];
 }
 
@@ -19,6 +20,7 @@ export const SelectPanelEditor: FC<Props> = ({
                                                value, onBlur, onChange,
                                                options,
                                                label,
+                                               error,
                                                ...props
                                              }) => {
 
@@ -57,6 +59,7 @@ export const SelectPanelEditor: FC<Props> = ({
                  rotate={open ? 270 : 90}
                  size={20}/>
       </div>
+      {error && <div className={styles.main_error}>{error}</div>}
       {open && <div className={styles.main_options}>
         {options.map((e, i) => (
           <span className={styles.main_option} key={i} onClick={() => onChangeValue(e.value)}>{e.label}</span>

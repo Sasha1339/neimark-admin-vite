@@ -65,3 +65,8 @@
 .main_option:hover {
     color: var(--color-active-text);
 }
+
+.main_error {
+    color: var(--color-main-error);
+    font-size: var(--font-size-form-error);
+}
