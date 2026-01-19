@@ -1,15 +1,22 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from "@/services/store.ts";
 import {userActions, userSelectors} from "@/services/user.ts";
+import {useEffect} from "react";
 
 export const PrivateRoute = () => {
   const user = useAppSelector(userSelectors.user);
   const dispatch = useAppDispatch();
   const location = useLocation();
 
-  if (!(user)) {
-    dispatch(userActions.rememberNewRoute(location.pathname + location.search));
+  // Используем useEffect для побочного эффекта
+  useEffect(() => {
+    if (!user) {
+      dispatch(userActions.rememberNewRoute(location.pathname + location.search));
+    }
+  }, [user, location, dispatch]); // Зависимости
 
+  // Основная логика рендеринга
+  if (!user) {
     return (
       <Navigate
         to="/login"
