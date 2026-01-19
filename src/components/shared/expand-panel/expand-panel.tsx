@@ -11,9 +11,10 @@ type Props = {
   links?: Record<string, string>;
   bodyPanel?: ReactNode
   onClick?: (link: string) => void;
+  onLogout?: () => void;
 }
 
-export const ExpandPanel: FC<Props & PropsWithChildren> = ({expandWidth, onClick, bodyPanel, headerTitle, children, links, ...props}) => {
+export const ExpandPanel: FC<Props & PropsWithChildren> = ({expandWidth, onClick, onLogout, bodyPanel, headerTitle, children, links, ...props}) => {
 
   const [expanded, setExpanded] = useState(true);
   const panel = useRef<HTMLDivElement>(null);
@@ -49,7 +50,7 @@ export const ExpandPanel: FC<Props & PropsWithChildren> = ({expandWidth, onClick
             ))}
           </div>
 
-          <div className={styles.icon_with_title}>
+          <div className={styles.icon_with_title} onClick={onLogout}>
             <IconSvg name={'logout'} color={'main-white'}/>
             <div className={styles.link}>Выход</div>
           </div>

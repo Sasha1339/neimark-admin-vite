@@ -1,5 +1,7 @@
 import {createSlice, type PayloadAction} from "@reduxjs/toolkit";
 import type {User} from "@/shared/user/types.ts";
+import {authApi} from "@/middlewares/auth.ts";
+import {userApi} from "@/middlewares/user.ts";
 
 type UserState = {
   user: User | null;
@@ -22,6 +24,14 @@ export const user = createSlice({
   selectors: {
     user: (state: UserState) => state.user,
     rememberRoute: (state: UserState) => state.rememberRoute,
+  },
+  extraReducers: (builder) => {
+    builder.addMatcher(userApi.endpoints.getUser.matchFulfilled, (state, action) => {
+      state.user = action.payload;
+    });
+    builder.addMatcher(userApi.endpoints.logout.matchFulfilled, (state) => {
+      state.user = null;
+    });
   }
 });
 

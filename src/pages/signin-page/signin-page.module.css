@@ -27,6 +27,14 @@
     width: 100%;
 }
 
+.error {
+    font-size: var(--font-size-form-input-14);
+    color: var(--color-main-error);
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
 .label {
     color: var(--color-white-text-opacity-50) !important;
     font-size: var(--font-size-form-label-16) !important;

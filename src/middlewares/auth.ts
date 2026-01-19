@@ -1,18 +1,18 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-import {APPWRITE_API, PROJECT_ID} from "@/shared/const.ts";
+import {APPWRITE_API_V1, PROJECT_ID} from "@/shared/const.ts";
 import type {SignInData} from "@/shared/user/types.ts";
 
 export const authApi = createApi({
-  reducerPath: 'auth',
+  reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: APPWRITE_API,
+    baseUrl: APPWRITE_API_V1,
     prepareHeaders: (headers) => {
       headers.set('X-Appwrite-Project', PROJECT_ID);
       return headers;
     }
   }),
   endpoints: (builder) => ({
-    auth: builder.mutation<any, SignInData>({
+    auth: builder.mutation<void, SignInData>({
       query: (signin) => ({
         url: `/account/sessions/email`,
         method: 'POST',
@@ -22,4 +22,4 @@ export const authApi = createApi({
   })
 });
 
-export const { useAuthMutation } = authApi
+export const {useAuthMutation} = authApi

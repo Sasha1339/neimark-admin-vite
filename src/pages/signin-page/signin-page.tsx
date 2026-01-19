@@ -1,4 +1,4 @@
-import {type FC, useState} from "react";
+import {type FC, useEffect, useState} from "react";
 import styles from './signin-page.module.css';
 import {Controller, useForm} from "react-hook-form";
 import {InputEditor} from "@/components/shared/input-editor/input-editor.tsx";
@@ -7,12 +7,23 @@ import type {SignInData} from "@/shared/user/types.ts";
 import {signinScheme} from "@/entities/signin.ts";
 import {Button} from "@/components/shared/button/button.tsx";
 import {useAuthMutation} from "@/middlewares/auth.ts";
+import {useGetUserMutation, useLogoutMutation} from "@/middlewares/user.ts";
+import {useNavigate} from "react-router-dom";
+import {useAppSelector} from "@/services/store.ts";
+import {userSelectors} from "@/services/user.ts";
 
 type Page = {}
 
 export const SigninPage: FC<Page> = ({...props}) => {
 
-  const [authApi, authResult] = useAuthMutation();
+  const [auth, authResult] = useAuthMutation();
+  const [getUser] = useGetUserMutation();
+  const [logout] = useLogoutMutation();
+  const [error, setError] = useState<boolean>(false);
+  const navigate = useNavigate()
+  const rememberRoute = useAppSelector(userSelectors.rememberRoute);
+  const user = useAppSelector(userSelectors.user);
+
 
   const {control, handleSubmit} = useForm<SignInData>({
     resolver: zodResolver(signinScheme),
@@ -22,14 +33,25 @@ export const SigninPage: FC<Page> = ({...props}) => {
     }
   });
 
+  useEffect(() => {
+    if (authResult.isError) {
+      setError(true);
+    } else if (authResult.isSuccess) {
+      setError(false);
+      getUser()
+    }
+  }, [authResult]);
+
+  useEffect(() => {
+    if (user) {
+      navigate(rememberRoute ? rememberRoute : '/');
+    }
+  }, [user]);
+
   const onSubmit = (data: SignInData) => {
-    authApi(data).then((e) => {
-      if (e.error) {
-        console.log(e.error)
-      } else {
-        console.log(e.data)
-      }
-    })
+    setError(false);
+    // logout();
+    auth(data);
   }
 
 
@@ -55,8 +77,11 @@ export const SigninPage: FC<Page> = ({...props}) => {
           )}/>
         </div>
         <div className={styles.wrapper_button}>
-          <Button buttonClassName={styles.button} type={'submit'} title={'Авторизоваться'} size={'small'} color={'main-purple'}/>
+          <Button buttonClassName={styles.button} type={'submit'} title={'Авторизоваться'} size={'small'}
+                  color={'main-purple'}/>
+          { error && <div className={styles.error}>Неверный логин или пароль</div> }
         </div>
+
       </form>
     </main>
   )

@@ -3,6 +3,7 @@ import styles from './app-header.module.css';
 import {Icon} from '@/components/shared/icon/icon.tsx';
 import {ExpandPanel} from "@/components/shared/expand-panel/expand-panel.tsx";
 import {Outlet, useNavigate} from "react-router-dom";
+import {useLogoutMutation} from "@/middlewares/user.ts";
 
 const links = {
   publications: 'Публикации',
@@ -12,27 +13,32 @@ const links = {
   documents: 'Документы'
 }
 
-type Props = {
-
-}
+type Props = {}
 
 export const AppHeader: FC<Props> = ({...props}) => {
 
   const navigate = useNavigate();
+  const [logout] = useLogoutMutation();
+
+  const onLogout = () => {
+    logout();
+  }
 
   return (
     <>
       <header className={styles.header}>
         <div>
-          <Icon className={styles.logo} name={'logo'} sizeClassName={true} />
+          <Icon className={styles.logo} name={'logo'} sizeClassName={true}/>
         </div>
         <div>
 
         </div>
       </header>
       <main className={styles.main}>
-        <ExpandPanel expandWidth={300} links={links} onClick={(link) => {navigate(`/${link}`)}}>
-          <Outlet />
+        <ExpandPanel expandWidth={300} links={links} onClick={(link) => {
+          navigate(`/${link}`)
+        }} onLogout={onLogout}>
+          <Outlet/>
         </ExpandPanel>
       </main>
     </>

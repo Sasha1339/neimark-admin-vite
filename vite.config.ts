@@ -12,10 +12,26 @@ export default defineConfig({
     strictPort: true,
     allowedHosts: [],
     proxy: {
-      '/documents-library/api': {
-        target: 'https://localhost:3000',
+      '/v1': {
+        target: 'https://cloud.appwrite.io',
         changeOrigin: true,
-        secure: false
+        secure: false,
+        // Ключевой момент: перезаписываем Domain в куках
+        configure: (proxy, _options) => {
+          proxy.on('proxyRes', (proxyRes, req, res) => {
+            const setCookieHeaders = proxyRes.headers['set-cookie'];
+            if (setCookieHeaders) {
+              // Модифицируем каждую куку
+              proxyRes.headers['set-cookie'] = setCookieHeaders.map((cookie) => {
+                return cookie
+                  // Меняем Domain на localhost
+                  .replace(/Domain=[^;]+;?/i, 'Domain=localhost;')
+                  // Убираем SameSite=None (он несовместим с localhost без HTTPS)
+                  .replace(/SameSite=None;?/i, 'SameSite=Lax;');
+              });
+            }
+          });
+        }
       }
     }
   },

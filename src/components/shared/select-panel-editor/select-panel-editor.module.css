@@ -9,7 +9,7 @@
 
 .main_label {
     font-size: var(--font-size-form-label);
-    color: var(--color-white-text);
+    color: var(--color-white-text-opacity-50);
     text-align: left;
 }
 
