@@ -5,10 +5,12 @@ import clsx from "clsx";
 
 export interface Props {
   title: string;
+  type?: 'button' | 'submit';
   disabled?: boolean;
   color?: keyof typeof colors;
   size?: 'small' | 'medium' | 'large';
   onClick?: () => void;
+  buttonClassName?: string;
 }
 
 export const Button: FC<Props> = ({
@@ -16,7 +18,8 @@ export const Button: FC<Props> = ({
                                     onClick,
                                     color,
                                     disabled = false,
-
+                                    buttonClassName,
+                                    type = 'button',
                                     size = 'large',
                                     ...props
                                   }) => {
@@ -31,9 +34,11 @@ export const Button: FC<Props> = ({
           {[styles.red_color]: color === 'main-red'},
           {[styles.green_color]: color === 'main-green'},
           {[styles.medium_size]: size === 'medium'},
-          {[styles.small_size]: size === 'small'}
+          {[styles.small_size]: size === 'small'},
+          buttonClassName
         )
       }
+      type={type}
       onClick={onClick} disabled={disabled}>
       {title}
     </button>

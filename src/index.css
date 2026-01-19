@@ -9,7 +9,7 @@
 }
 
 
-body {
+body, #root {
     background-color: var(--main-background);
     position: relative;
     width: 100vw;

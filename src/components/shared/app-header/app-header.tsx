@@ -1,8 +1,8 @@
-import type {FC, PropsWithChildren} from "react";
+import type {FC} from "react";
 import styles from './app-header.module.css';
 import {Icon} from '@/components/shared/icon/icon.tsx';
 import {ExpandPanel} from "@/components/shared/expand-panel/expand-panel.tsx";
-import {useNavigate} from "react-router-dom";
+import {Outlet, useNavigate} from "react-router-dom";
 
 const links = {
   publications: 'Публикации',
@@ -16,7 +16,7 @@ type Props = {
 
 }
 
-export const AppHeader: FC<Props & PropsWithChildren> = ({children, ...props}) => {
+export const AppHeader: FC<Props> = ({...props}) => {
 
   const navigate = useNavigate();
 
@@ -32,7 +32,7 @@ export const AppHeader: FC<Props & PropsWithChildren> = ({children, ...props}) =
       </header>
       <main className={styles.main}>
         <ExpandPanel expandWidth={300} links={links} onClick={(link) => {navigate(`/${link}`)}}>
-          {children}
+          <Outlet />
         </ExpandPanel>
       </main>
     </>
