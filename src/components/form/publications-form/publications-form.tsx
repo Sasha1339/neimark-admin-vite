@@ -13,16 +13,17 @@ import {PublicationCategory} from "@/shared/publications/types.ts";
 type Props = {
   mode: 'create' | 'update';
   control: Control<any>;
-
   images: string[],
+  disabledButtonSaved?: boolean;
+  onDeleteImage?: (id: string) => void;
   onPublic: () => void;
 }
 
 
-export const PublicationsForm: FC<Props> = ({mode, onPublic, control, images, ...props}) => {
+export const PublicationsForm: FC<Props> = ({mode, onPublic, onDeleteImage, control, disabledButtonSaved = false, images, ...props}) => {
 
-  const options = useMemo(() => ([{value: PublicationCategory.NEWS, label: 'Новости'}, {value: PublicationCategory.EVENTS, label: 'События'}, {
-    value: PublicationCategory.POST,
+  const options = useMemo(() => ([{value: PublicationCategory.NEWS, label: 'Новости'}, {value: PublicationCategory.EVENT, label: 'События'}, {
+    value: PublicationCategory.ANNOUNCEMENT,
     label: 'Объявления'
   }]), [])
 
@@ -47,28 +48,29 @@ export const PublicationsForm: FC<Props> = ({mode, onPublic, control, images, ..
           )}/>
         </div>
         <div className={clsx(styles.main_field, styles.two_column)}>
-          <Controller name={'description'} control={control} render={({field, fieldState}) => (
+          <Controller name={'content'} control={control} render={({field, fieldState}) => (
             <TextareaEditor {...field} label={'Описание'} error={fieldState.error?.message?.toString()}
                             placeholder={'Опишите событие, поделитесь деталями или добавьте полезные ссылки'}/>
           )}/>
         </div>
         <div className={clsx(styles.two_column)}>
-          <Controller name={'date'} control={control} render={({field, fieldState}) => (
+          <Controller name={'published_at'} control={control} render={({field, fieldState}) => (
             <DateEditor {...field} label={'Дата публикации'} error={fieldState.error?.message?.toString()}
                         description={'Новость появится в ленте утром выбранного дня'}/>
           )}/>
         </div>
         <div className={clsx(styles.main_field, styles.two_column)}>
           <Controller name={'files'} control={control} render={({field: {onChange, value}, fieldState}) => (
-            <FileEditor files={value} onChangeDelete={(value) => onChange(value)} onChange={(e) => onChange(e && e.target.files && value ? [...e.target.files, ...value] : e && e.target.files ? e.target.files : value)} label={'Фотографии'} imagesId={images} error={fieldState.error?.message?.toString()}
-                        description={'Можно прикрепить до 6 фотографий (формат .jpg или .png)'}/>
+            <FileEditor files={value} onChangeDelete={(value) => onChange(value)} onChange={(e) => onChange(e && e.target.files && value ? [...e.target.files, ...value] : e && e.target.files ? e.target.files : value)} label={'Фотографии'} images={images} error={fieldState.error?.message?.toString()}
+                        description={'Можно прикрепить до 6 фотографий (формат .jpg или .png)'}
+                        onDeleteImage={onDeleteImage}/>
           )}/>
         </div>
 
 
       </div>
       <div className={styles.button_panel}>
-        <Button title={'Опубликовать'} size={'small'} onClick={onPublic} />
+        <Button title={mode === 'create' ? 'Опубликовать' : 'Сохранить изменения'} disabled={disabledButtonSaved} size={'small'} onClick={onPublic} />
       </div>
     </>
   )

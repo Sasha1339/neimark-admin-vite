@@ -55,7 +55,6 @@ export const DateEditor: FC<Props> = ({
           selectsStart
           isClearable={false}
           monthsShown={1}
-          minDate={new Date()}
           dateFormat="dd.MM.yyyy"
           popperPlacement="bottom-start"
           showPopperArrow={false}

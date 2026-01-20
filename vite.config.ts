@@ -12,7 +12,17 @@ export default defineConfig({
     strictPort: true,
     allowedHosts: [],
     proxy: {
-      '/v1': {
+      '/v1/storage': {
+        target: 'https://fra.cloud.appwrite.io',
+        changeOrigin: true,
+        secure: false,
+      },
+      '/v1/databases': {
+        target: 'https://cloud.appwrite.io',
+        changeOrigin: true,
+        secure: false,
+      },
+      '/v1/account': {
         target: 'https://cloud.appwrite.io',
         changeOrigin: true,
         secure: false,

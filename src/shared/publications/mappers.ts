@@ -5,10 +5,12 @@ export const toCategory = (category: PublicationCategory) => {
   switch (category) {
     case PublicationCategory.NEWS:
       return 'Новости';
-    case PublicationCategory.EVENTS:
+    case PublicationCategory.EVENT:
       return 'События';
-    case PublicationCategory.POST:
-      return 'Новости';
+    case PublicationCategory.ANNOUNCEMENT:
+      return 'Объявления';
+    default:
+      return '<Не выбрано>';
   }
 
 }

@@ -8,14 +8,12 @@ export const PrivateRoute = () => {
   const dispatch = useAppDispatch();
   const location = useLocation();
 
-  // Используем useEffect для побочного эффекта
   useEffect(() => {
     if (!user) {
       dispatch(userActions.rememberNewRoute(location.pathname + location.search));
     }
-  }, [user, location, dispatch]); // Зависимости
+  }, [user, location, dispatch]);
 
-  // Основная логика рендеринга
   if (!user) {
     return (
       <Navigate
