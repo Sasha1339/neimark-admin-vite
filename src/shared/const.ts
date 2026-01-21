@@ -6,4 +6,5 @@ export const APPWRITE_STORAGE_API_V1_WITH_DOMAIN = 'https://fra.cloud.appwrite.i
 export const PROJECT_ID = 'neimark';
 export const DATABASE_NEIMARK_ID = 'neimark_db';
 export const COLLECTION_PUBLICATION_ID = 'news';
+export const COLLECTION_PROFILES_ID = 'profiles';
 export const BUCKET_NEWS_MEDIA_ID = 'news_media';

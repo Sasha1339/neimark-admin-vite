@@ -18,3 +18,8 @@ export interface Room {
   date: string;
   status: string;
 }
+
+export interface Response<Type> {
+  total: number;
+  documents: Type[]
+}

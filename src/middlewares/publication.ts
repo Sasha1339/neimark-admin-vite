@@ -1,13 +1,13 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {
-  APPWRITE_API_V1,
   APPWRITE_DATABASE_API_V1,
   COLLECTION_PUBLICATION_ID,
   DATABASE_NEIMARK_ID,
   PROJECT_ID
 } from "@/shared/const.ts";
-import type {Publication, PublicationForm, PublicationsResponse} from "@/shared/publications/types.ts";
-import {Query, TablesDB} from "appwrite";
+import type {Publication, PublicationForm} from "@/shared/publications/types.ts";
+import {Query} from "appwrite";
+import type {Response} from "@/shared/types.ts";
 
 export const publicationApi = createApi({
   reducerPath: 'publicationApi',
@@ -20,7 +20,7 @@ export const publicationApi = createApi({
     }
   }),
   endpoints: (builder) => ({
-    getAllPublications: builder.mutation<PublicationsResponse, void>({
+    getAllPublications: builder.mutation<Response<Publication>, void>({
       query: () => {
 
         const queries = [
@@ -40,7 +40,7 @@ export const publicationApi = createApi({
         }
       }
     }),
-    getAllPublicationsWithPagination: builder.mutation<PublicationsResponse, { offset: number }>({
+    getAllPublicationsWithPagination: builder.mutation<Response<Publication>, { offset: number }>({
       query: (params) => {
 
         const queries = [

@@ -25,11 +25,6 @@ export interface PublicationForm {
   files?: FileList
 }
 
-export type PublicationsResponse = {
-  total: number;
-  documents: Publication[];
-}
-
 export enum PublicationCategory {
   EVENT = 'event',
   NEWS = 'news',

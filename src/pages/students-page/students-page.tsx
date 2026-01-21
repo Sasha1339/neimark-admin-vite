@@ -1,12 +1,9 @@
-import {type FC, useState} from "react";
+import {type FC, useEffect, useState} from "react";
 import {ExpandPanel} from "@/components/shared/expand-panel/expand-panel.tsx";
 import {ListPanel} from "@/components/shared/list-panel/list-panel.tsx";
-import {PublicationsForm} from "@/components/form/publications-form/publications-form.tsx";
-import {useForm} from "react-hook-form";
 import {ListPanelNode} from "@/components/students/list-panel-node/list-panel-node.tsx";
-import {StudentsForm} from "@/components/form/students-form/students-form.tsx";
-import {CreateStudent} from "@/components/students/create-student/create-student.tsx";
 import {Outlet, useLocation, useNavigate} from "react-router-dom";
+import {useGetAllStudentsMutation} from "@/middlewares/student.ts";
 
 const data = [
   {
@@ -73,12 +70,22 @@ export const StudentsPage: FC<Page> = ({...props}) => {
   const [search, setSearch] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
+  const [getAllStudents] = useGetAllStudentsMutation();
+  const [getAllStudentsWithPagination] = useGetAllStudentsMutation();
 
   const filterStudents = (e: {name: string, description: string}) => {
     const searchCase = search.toLowerCase();
     const nameCase = e.name.toLowerCase();
     const descriptionCase = e.description.toLowerCase();
     return searchCase.includes(nameCase) || searchCase.includes(descriptionCase) || searchCase === '' || nameCase.includes(searchCase) || descriptionCase.includes(searchCase);
+  }
+
+  useEffect(() => {
+    getAllStudents()
+  }, []);
+
+  const onUploadYet = () => {
+    getAllStudentsWithPagination({offset: publications.length})
   }
   
   return (
