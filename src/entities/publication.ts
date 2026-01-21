@@ -10,14 +10,15 @@ export const createPublicationScheme = z.object({
       errorMap: () => ({message: 'Выберите категорию'})
     }
   ),
-  description:
+  gallery_urls:
+    z.array(z.string()),
+  content:
     z.string().min(1, 'Описание обязательно'),
-  date:
+  published_at:
     z.string().min(1, 'Дата обязательна'),
   files:
     z
-      .custom<FileList>() // используем custom для типизации
-      .refine((files) => files && files.length > 0, {message: 'Файл обязателен'}),
+      .custom<FileList>().optional()
 });
 
 export const updatePublicationScheme = z.object({

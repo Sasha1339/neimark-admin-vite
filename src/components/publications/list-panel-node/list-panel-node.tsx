@@ -10,9 +10,10 @@ type Props = {
   publication: Publication;
   active?: boolean;
   onClick: () => void;
+  onDelete: () => void;
 }
 
-export const ListPanelNode: FC<Props> = ({publication, active, onClick, ...props}) => {
+export const ListPanelNode: FC<Props> = ({publication, active, onClick, onDelete, ...props}) => {
 
   return (
     <div className={clsx(styles.main, {[styles.active]: active})}>
@@ -25,7 +26,7 @@ export const ListPanelNode: FC<Props> = ({publication, active, onClick, ...props
       </div>
       <div className={styles.buttons}>
         <Button title={'Редактировать'} size={'small'} color={'main-purple'} onClick={onClick}/>
-        <Button title={'Удалить'} size={'small'} color={'main-red'} />
+        <Button title={'Удалить'} size={'small'} color={'main-red'} onClick={onDelete}/>
       </div>
     </div>
   )

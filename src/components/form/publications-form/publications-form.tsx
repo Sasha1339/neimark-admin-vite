@@ -31,10 +31,8 @@ export const PublicationsForm: FC<Props> = ({mode, onPublic, onDeleteImage, cont
     <>
       <div className={styles.main}>
         <div className={styles.main_header}>
-          <div className={styles.main_header_text}>Новая публикация</div>
-          <div className={styles.main_subheader_text}>Заполните данные и прикрепите изображения. Первая фотография
-            станет
-            обложкой.
+          <div className={styles.main_header_text}>{mode === 'create' ? 'Новая публикация' : 'Редактировать публикацию'}</div>
+          <div className={styles.main_subheader_text}>{mode === 'create' ? 'Заполните данные и прикрепите изображения. Первая фотография станет обложкой.' : 'Отредактируете данные публикации. При загрузке фотографии первая фотография станет обложкой.'}
           </div>
         </div>
         <div className={styles.main_field}>

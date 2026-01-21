@@ -7,7 +7,11 @@ import {type PublicationForm} from "@/shared/publications/types.ts";
 import {useAppSelector} from "@/services/store.ts";
 import {publicationSelectors} from "@/services/publication.ts";
 import {useParams} from "react-router-dom";
-import {useGetPublicationMutation, useUpdatePublicationFieldsMutation} from "@/middlewares/publication.ts";
+import {
+  useGetAllPublicationsMutation,
+  useGetPublicationMutation,
+  useUpdatePublicationFieldsMutation
+} from "@/middlewares/publication.ts";
 
 import {withURLAppwriteStorage} from "@/shared/images/functions.ts";
 import {useApiPublicationImage} from "@/shared/images/hooks/useApiPublicationImage.ts";
@@ -18,6 +22,7 @@ export const EditPublication: FC<Props> = ({...props}) => {
 
   const params = useParams<{ id: string }>();
   const [getPublication] = useGetPublicationMutation();
+  const [getAllPublication] = useGetAllPublicationsMutation();
   const [updatePublicationFields, updatePublicationsFieldsResult] = useUpdatePublicationFieldsMutation();
   const currentPublication = useAppSelector(publicationSelectors.currentPublication);
   const {savedAllImages, deleteSelectedPublicationImage} = useApiPublicationImage(currentPublication);
@@ -48,6 +53,8 @@ export const EditPublication: FC<Props> = ({...props}) => {
   useEffect(() => {
     if (updatePublicationsFieldsResult.isError && currentPublication) {
       reset(currentPublication)
+    } else if (updatePublicationsFieldsResult.isSuccess) {
+      getAllPublication();
     }
   }, [updatePublicationsFieldsResult]);
 

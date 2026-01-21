@@ -19,6 +19,9 @@ export interface PublicationForm {
   featured_image_url?: string;
   gallery_urls: string[];
   content: string;
+  is_important?: boolean;
+  author_id?: string;
+  status?: 'published' | 'unpublished';
   files?: FileList
 }
 

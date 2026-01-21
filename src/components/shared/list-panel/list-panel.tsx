@@ -8,12 +8,14 @@ type Props = {
   isNewButton?: boolean;
   placeholder?: string;
   titleNewButton?: string;
+  uploadYetButtonShow?: boolean;
   onSearchChange?: (value: string) => void;
   onClickNewButton?: () => void;
+  onUploadYet?: () => void;
   width?: number;
 }
 
-export const ListPanel: FC<Props & PropsWithChildren> = ({children, onClickNewButton, placeholder, titleNewButton, isNewButton = false, width = 300, onSearchChange, isSearching = false, ...props}) => {
+export const ListPanel: FC<Props & PropsWithChildren> = ({children, onClickNewButton, uploadYetButtonShow = false, onUploadYet, placeholder, titleNewButton, isNewButton = false, width = 300, onSearchChange, isSearching = false, ...props}) => {
 
   const onChange = (e: ChangeEvent<HTMLInputElement> ) => {
     onSearchChange?.(e.target.value);
@@ -26,6 +28,7 @@ export const ListPanel: FC<Props & PropsWithChildren> = ({children, onClickNewBu
       </div>}
       <div className={clsx(styles.main, {[styles.main_with_is_buttons]: isNewButton})}>
         {children}
+        {uploadYetButtonShow && <Button title={'Загрузить еще'} size={'small'} onClick={onUploadYet}/>}
       </div>
       {isNewButton && <div className={styles.button_panel}>
         <Button title={titleNewButton ?? 'Добавить новое'} size={'small'} onClick={onClickNewButton} />
