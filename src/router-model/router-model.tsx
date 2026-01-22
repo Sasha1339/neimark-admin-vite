@@ -17,6 +17,7 @@ import {Linen} from "@/components/services/linen/linen.tsx";
 import {Laundry} from "@/components/services/laundry/laundry.tsx";
 import {Master} from "@/components/services/master/master.tsx";
 import App from "@/App.tsx";
+import {DocumentsViewer} from "@/components/documents/documents-viewer/documents-viewer.tsx";
 
 export const RouterModel = () => {
   return (
@@ -46,7 +47,9 @@ export const RouterModel = () => {
               <Route path="new" element={<CreateStudent/>}/>
               <Route path=":id" element={<EditStudent/>}/>
             </Route>
-            <Route path="documents" element={<DocumentsPage/>}/>
+            <Route path="documents" element={<DocumentsPage/>}>
+              <Route path=":id" element={<DocumentsViewer/>}/>
+            </Route>
             <Route path="services" element={<ServicesPage/>}>
               <Route path="cleaning" element={<Cleaning/>}>
                 <Route path=":id" element={<Chat/>}/>

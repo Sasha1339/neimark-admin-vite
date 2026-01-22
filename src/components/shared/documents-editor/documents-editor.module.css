@@ -11,10 +11,35 @@
     box-sizing: border-box;
 }
 
+.description_column {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 5px;
+}
+
 .description {
     text-align: left;
     color: var(--color-active-text);
     font-size: var(--font-size-form-input);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.description_white {
+    text-align: left;
+    color: var(--color-white-text-opacity-50);
+    font-size: var(--font-size-form-input-16);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.description_status {
+    text-align: left;
+    color: var(--color-active-text);
+    font-size: var(--font-size-form-input-16);
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;

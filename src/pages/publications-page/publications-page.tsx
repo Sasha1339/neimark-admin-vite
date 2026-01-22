@@ -37,7 +37,6 @@ export const PublicationsPage: FC<Page> = ({...props}) => {
     if (location.pathname.includes(id)) {
       navigate('/publications');
     }
-    getAllPublications();
   }
   
   return (

@@ -44,8 +44,20 @@ export const student = createSlice({
     builder.addMatcher(studentApi.endpoints.getStudent.matchFulfilled, (state, action) => {
       state.currentStudent = action.payload
     })
+    builder.addMatcher(studentApi.endpoints.updateStudentFields.matchFulfilled, (state, action) => {
+      state.currentStudent = action.payload
+      state.students = state.students.map(student =>
+        student.$id === action.payload.$id
+          ? { ...student, ...action.payload }
+          : student
+      );
+    })
     builder.addMatcher(documentApi.endpoints.getAllDocumentsById.matchFulfilled, (state, action) => {
       state.studentDocuments = action.payload.documents;
+    })
+    builder.addMatcher(studentApi.endpoints.deleteStudent.matchFulfilled, (state, action) => {
+      state.students = state.students.filter(student => action.meta.arg.originalArgs.id !== student.$id);
+      state.total = state.total - 1;
     })
   }
 });

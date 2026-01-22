@@ -41,6 +41,15 @@ export const publication = createSlice({
     })
     builder.addMatcher(publicationApi.endpoints.updatePublicationFields.matchFulfilled, (state, action) => {
       state.currentPublication = action.payload
+      state.publications = state.publications.map(publication =>
+        publication.$id === action.payload.$id
+          ? { ...publication, ...action.payload }
+          : publication
+      );
+    })
+    builder.addMatcher(publicationApi.endpoints.deletePublication.matchFulfilled, (state, action) => {
+      state.publications = state.publications.filter(publication => action.meta.arg.originalArgs.id !== publication.$id);
+      state.total = state.total - 1;
     })
   }
 });

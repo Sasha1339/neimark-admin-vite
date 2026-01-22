@@ -1,68 +1,14 @@
-import {type FC, useState} from "react";
+import {type FC, useEffect, useState} from "react";
 import {ExpandPanel} from "@/components/shared/expand-panel/expand-panel.tsx";
 import {ListPanel} from "@/components/shared/list-panel/list-panel.tsx";
 import {ListPanelNode} from "@/components/documents/list-panel-node/list-panel-node.tsx";
-import type {DocumentData} from "@/shared/types.ts";
-import {withUrlDocuments} from "@/shared/functions.ts";
-import {DocumentsViewer} from "@/components/documents/documents-viewer/documents-viewer.tsx";
-
-const data = [
-  {
-    name: 'Паспорт',
-    file: 'file.pdf',
-    date: '2027-02-17T07:00:00.000Z',
-    status: 'На проверке',
-    student: {
-      firstname: 'Александр',
-      lastname: 'Алексеев',
-      email: 'email@email.com'
-    }
-  },
-  {
-    name: 'Паспорт',
-    file: 'razdel.pdf',
-    date: '2027-02-17T07:00:00.000Z',
-    status: 'На проверке',
-    student: {
-      firstname: 'Александр',
-      lastname: 'Алексеев',
-      email: 'email@email.com'
-    }
-  },
-  {
-    name: 'Паспорт',
-    file: '',
-    date: '2027-02-17T07:00:00.000Z',
-    status: 'На проверке',
-    student: {
-      firstname: 'Александр',
-      lastname: 'Алексеев',
-      email: 'email@email.com'
-    }
-  },
-  {
-    name: 'Паспорт',
-    file: '',
-    date: '2027-02-17T07:00:00.000Z',
-    status: 'На проверке',
-    student: {
-      firstname: 'Александр',
-      lastname: 'Алексеев',
-      email: 'email@email.com'
-    }
-  },
-  {
-    name: 'Паспорт',
-    file: '',
-    date: '2027-02-17T07:00:00.000Z',
-    status: 'На проверке',
-    student: {
-      firstname: 'Александр',
-      lastname: 'Алексеев',
-      email: 'email@email.com'
-    }
-  },
-];
+import {useAppSelector} from "@/services/store.ts";
+import {documentSelectors} from "@/services/document.ts";
+import {useGetAllDocumentsMutation, useGetAllDocumentsWithPaginationMutation} from "@/middlewares/document.ts";
+import type {DocumentFile} from "@/shared/documents/types.ts";
+import {getNameDocument, getNameStatus} from "@/shared/documents/functions.ts";
+import {Outlet, useLocation, useNavigate} from "react-router-dom";
+import {splitByNonLetters, splitByNonLettersAndNumber} from "@/shared/functions.ts";
 
 type Page = {}
 
@@ -70,24 +16,44 @@ export const DocumentsPage: FC<Page> = ({...props}) => {
 
   const [search, setSearch] = useState('');
   const [documentId, setDocumentId] = useState<string | null>(null)
+  const [getAllDocuments] = useGetAllDocumentsMutation();
+  const [getAllDocumentsWithPagination] = useGetAllDocumentsWithPaginationMutation();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const documents = useAppSelector(documentSelectors.allDocuments);
+  const total = useAppSelector(documentSelectors.total);
+
+  useEffect(() => {
+    getAllDocuments()
+  }, []);
+
+  const onUploadYet = () => {
+    getAllDocumentsWithPagination({offset: documents.length})
+  }
 
 
-  const filterStudents = (e: DocumentData) => {
-    const searchCase = search.toLowerCase();
-    const nameCase = e.name.toLowerCase();
-    return searchCase.includes(nameCase) || searchCase === '' || nameCase.includes(searchCase);
+  const filterStudents = (e: DocumentFile) => {
+    const searchCase = splitByNonLettersAndNumber(search !== null ? search.toLowerCase() : '');
+    const firstNameCase = e.type ? getNameDocument(e.type).toLowerCase() : '';
+    const secondNameCase = e.status ? getNameStatus(e.status).toLowerCase() : '';
+    const patronymicCase = e.$id ? e.$id.toLowerCase() : '';
+
+    const description = `${firstNameCase} ${secondNameCase} ${patronymicCase}`;
+
+    return searchCase.length === 0 || searchCase.every((e) => description.includes(e));
   }
 
   return (
     <ExpandPanel expandWidth={650} headerTitle={'Документы'}
                  bodyPanel={
-                   <ListPanel isSearching={true} onSearchChange={(e) => setSearch(e)} width={400}>
-                     {data.filter(filterStudents).map((e, i) => (
-                       <ListPanelNode documentData={e} key={i} active={documentId === e.file} onSelect={(id) => setDocumentId(id)}/>
+                   <ListPanel onUploadYet={onUploadYet} uploadYetButtonShow={total > documents.length} isSearching={true} onSearchChange={(e) => setSearch(e)} width={400}>
+                     {documents.filter(filterStudents).map((e, i) => (
+                       <ListPanelNode documentData={e} key={i} active={location.pathname.includes(e.file_id)} onSelect={(id) => navigate(`/documents/${id}`)}/>
                      ))}
                    </ListPanel>
                  }>
-      {documentId && <DocumentsViewer src={withUrlDocuments(documentId)} />}
+      <Outlet />
     </ExpandPanel>
   )
 

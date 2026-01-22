@@ -5,9 +5,9 @@ export const withUrlImages = (id: string) => {
   return `https://resto-mate.ru/images/api/v1/images?fileName=${id}`;
 }
 
-export const withUrlDocuments = (id: string) => {
-  return `http://localhost:3000/documents-library/api/view?file=${id}`;
-}
+// export const withUrlDocuments = (id: string) => {
+//   return `http://localhost:3000/documents-library/api/view?file=${id}`;
+// }
 
 export function formatDate(line: string): string {
   const date = new Date(line);
@@ -32,4 +32,11 @@ export function splitByNonLetters(str: string) {
   // [^a-zA-Z]+ - все символы, кроме букв латинского алфавита
   // [^a-zA-Zа-яА-Я]+ - включая русские буквы
   return str.split(/[^a-zA-Zа-яА-Я]+/).filter((word: string) => word.length > 0);
+}
+
+export function splitByNonLettersAndNumber(str: string) {
+  // \W+ - все не-буквенные символы (включая цифры, пунктуацию и т.д.)
+  // [^a-zA-Z]+ - все символы, кроме букв латинского алфавита
+  // [^a-zA-Zа-яА-Я]+ - включая русские буквы
+  return str.split(/[^a-zA-Zа-яА-Я0-9]+/).filter((word: string) => word.length > 0);
 }

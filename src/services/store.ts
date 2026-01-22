@@ -9,6 +9,7 @@ import {imageApi} from "@/middlewares/image.ts";
 import {studentApi} from "@/middlewares/student.ts";
 import {studentReducer} from "@/services/student.ts";
 import {documentApi} from "@/middlewares/document.ts";
+import {documentReducer} from "@/services/document.ts";
 
 export function createAppStore(preloadedState = {}) {
   return configureStore({
@@ -16,6 +17,7 @@ export function createAppStore(preloadedState = {}) {
       user: userReducer,
       publication: publicationReducer,
       student: studentReducer,
+      document: documentReducer,
       authApi: authApi.reducer,
       userApi: userApi.reducer,
       publicationApi: publicationApi.reducer,

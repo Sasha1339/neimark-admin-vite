@@ -1,15 +1,19 @@
 import type {FC} from "react";
 import styles from './documents-viewer.module.css';
+import {useParams} from "react-router-dom";
+import {withDocumentUrl} from "@/shared/documents/functions.ts";
 
 type Props = {
-  src: string
+
 }
 
-export const DocumentsViewer: FC<Props> = ({src, ...props}) => {
+export const DocumentsViewer: FC<Props> = ({...props}) => {
+
+  const params = useParams<{id: string}>()
 
   return (
     <div className={styles.main}>
-     <iframe className={styles.iframe} src={src}></iframe>
+      {params.id && <iframe className={styles.iframe} src={withDocumentUrl(params.id)}></iframe>}
     </div>
   )
 

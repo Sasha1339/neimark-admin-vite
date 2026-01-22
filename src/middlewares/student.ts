@@ -28,7 +28,7 @@ export const studentApi = createApi({
           Query.offset(0),
           Query.orderDesc("full_name"),
           Query.select(["*"]),
-          Query.equal("user_role", "student")
+          Query.equal("user_role", "student") // management_company_admin
         ];
 
         const queryString = queries
@@ -68,7 +68,7 @@ export const studentApi = createApi({
         method: 'GET',
       })
     }),
-    updatePublicationFields: builder.mutation<Publication, { studentId: string, student: StudentForm }>({
+    updateStudentFields: builder.mutation<Student, { studentId: string, student: StudentForm }>({
       query: (params) => ({
         url: `/${DATABASE_NEIMARK_ID}/collections/${COLLECTION_PROFILES_ID}/documents/${params.studentId}`,
         method: 'PATCH',
@@ -96,6 +96,6 @@ export const {
   useGetAllStudentsMutation,
   useCreateStudentMutation,
   useDeleteStudentMutation,
-  useUpdatePublicationFieldsMutation,
+  useUpdateStudentFieldsMutation,
   useGetStudentMutation
 } = studentApi

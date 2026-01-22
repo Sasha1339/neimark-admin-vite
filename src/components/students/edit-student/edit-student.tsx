@@ -9,7 +9,7 @@ import {
   useDeleteStudentMutation,
   useGetAllStudentsMutation,
   useGetStudentMutation,
-  useUpdatePublicationFieldsMutation
+  useUpdateStudentFieldsMutation
 } from "@/middlewares/student.ts";
 import {useAppSelector} from "@/services/store.ts";
 import {studentSelectors} from "@/services/student.ts";
@@ -24,7 +24,7 @@ export const EditStudent: FC<Props> = ({...props}) => {
 
   const params = useParams<{ id: string }>();
   const [getStudent] = useGetStudentMutation();
-  const [updateStudent, updateStudentResult] = useUpdatePublicationFieldsMutation();
+  const [updateStudent, updateStudentResult] = useUpdateStudentFieldsMutation();
   const [getAllDocumentsById] = useGetAllDocumentsByIdMutation();
   const [deleteStudent] = useDeleteStudentMutation();
   const [getAllStudents] = useGetAllStudentsMutation();
@@ -81,8 +81,6 @@ export const EditStudent: FC<Props> = ({...props}) => {
   useEffect(() => {
     if (updateStudentResult.isError && currentStudent) {
       resetStudent(currentStudent);
-    } else if (updateStudentResult.isSuccess) {
-      getAllStudents();
     }
   }, [updateStudentResult]);
 
@@ -96,7 +94,6 @@ export const EditStudent: FC<Props> = ({...props}) => {
     if (params.id) {
       await deleteStudent({id: params.id});
       navigate('/students');
-      getAllStudents();
     }
 
   }

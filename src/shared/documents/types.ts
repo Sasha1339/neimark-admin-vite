@@ -1,3 +1,5 @@
+import {colors} from "@/shared/colors.ts";
+
 export interface DocumentFile {
   $id: string;
   $createdAt: string;
@@ -21,3 +23,5 @@ export enum DocumentStatus {
   'REJECTED' = 'rejected',
   'EXPIRED' = 'expired',
 }
+
+export type ColorType =  keyof typeof colors;

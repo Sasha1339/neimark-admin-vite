@@ -53,8 +53,6 @@ export const EditPublication: FC<Props> = ({...props}) => {
   useEffect(() => {
     if (updatePublicationsFieldsResult.isError && currentPublication) {
       reset(currentPublication)
-    } else if (updatePublicationsFieldsResult.isSuccess) {
-      getAllPublication();
     }
   }, [updatePublicationsFieldsResult]);
 
