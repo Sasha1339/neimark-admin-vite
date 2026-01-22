@@ -36,9 +36,9 @@ export function getNameStatus(status: DocumentStatus): string {
 export function getColorByStatus(status: DocumentStatus): ColorType {
   switch (status) {
     case DocumentStatus.REJECTED:
-      return 'main-red';
+      return 'main-pink';
     case DocumentStatus.EXPIRED:
-      return 'main-red';
+      return 'main-pink';
     case DocumentStatus.APPROVED:
       return 'main-green';
     case DocumentStatus.PENDING:

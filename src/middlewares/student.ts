@@ -7,7 +7,6 @@ import {
 import {Query} from "appwrite";
 import type {Response} from "@/shared/types.ts";
 import type {Student, StudentForm} from "@/shared/students/types.ts";
-import type {Publication} from "@/shared/publications/types.ts";
 
 export const studentApi = createApi({
   reducerPath: 'studentApi',

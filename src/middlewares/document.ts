@@ -82,21 +82,21 @@ export const documentApi = createApi({
         }
       }
     }),
-    approvedDocument: builder.mutation<Publication, { documentId: string }>({
+    approvedDocument: builder.mutation<DocumentFile, { documentId: string }>({
       query: (params) => ({
         url: `/${DATABASE_NEIMARK_ID}/collections/${COLLECTION_PROFILE_DOCUMENTS_ID}/documents/${params.documentId}`,
         method: 'PATCH',
         body: {data: {status: DocumentStatus.APPROVED}},
       })
     }),
-    rejectedDocument: builder.mutation<Publication, { documentId: string }>({
+    rejectedDocument: builder.mutation<DocumentFile, { documentId: string }>({
       query: (params) => ({
         url: `/${DATABASE_NEIMARK_ID}/collections/${COLLECTION_PROFILE_DOCUMENTS_ID}/documents/${params.documentId}`,
         method: 'PATCH',
         body: {data: {status: DocumentStatus.REJECTED}},
       })
     }),
-    expiredDocument: builder.mutation<Publication, { documentId: string }>({
+    expiredDocument: builder.mutation<DocumentFile, { documentId: string }>({
       query: (params) => ({
         url: `/${DATABASE_NEIMARK_ID}/collections/${COLLECTION_PROFILE_DOCUMENTS_ID}/documents/${params.documentId}`,
         method: 'PATCH',
@@ -109,5 +109,8 @@ export const documentApi = createApi({
 export const {
   useGetAllDocumentsByIdMutation,
   useGetAllDocumentsMutation,
+  useApprovedDocumentMutation,
+  useRejectedDocumentMutation,
+  useExpiredDocumentMutation,
   useGetAllDocumentsWithPaginationMutation
 } = documentApi
