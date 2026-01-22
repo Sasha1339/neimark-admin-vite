@@ -4,9 +4,10 @@ import {
   DATABASE_NEIMARK_ID,
   PROJECT_ID
 } from "@/shared/const.ts";
-import type {Publication} from "@/shared/publications/types.ts";
 import {Query} from "appwrite";
 import type {Response} from "@/shared/types.ts";
+import type {Student, StudentForm} from "@/shared/students/types.ts";
+import type {Publication} from "@/shared/publications/types.ts";
 
 export const studentApi = createApi({
   reducerPath: 'studentApi',
@@ -19,7 +20,7 @@ export const studentApi = createApi({
     }
   }),
   endpoints: (builder) => ({
-    getAllStudents: builder.mutation<Response<Publication>, void>({
+    getAllStudents: builder.mutation<Response<Student>, void>({
       query: () => {
 
         const queries = [
@@ -40,7 +41,7 @@ export const studentApi = createApi({
         }
       }
     }),
-    getAllStudentsWithPagination: builder.mutation<Response<Publication>, { offset: number }>({
+    getAllStudentsWithPagination: builder.mutation<Response<Student>, { offset: number }>({
       query: (params) => {
 
         const queries = [
@@ -61,10 +62,30 @@ export const studentApi = createApi({
         }
       }
     }),
-    getStudent: builder.mutation<Publication, { studentId: string }>({
+    getStudent: builder.mutation<Student, { studentId: string }>({
       query: (params) => ({
         url: `/${DATABASE_NEIMARK_ID}/collections/${COLLECTION_PROFILES_ID}/documents/${params.studentId}`,
         method: 'GET',
+      })
+    }),
+    updatePublicationFields: builder.mutation<Publication, { studentId: string, student: StudentForm }>({
+      query: (params) => ({
+        url: `/${DATABASE_NEIMARK_ID}/collections/${COLLECTION_PROFILES_ID}/documents/${params.studentId}`,
+        method: 'PATCH',
+        body: {data: params.student},
+      })
+    }),
+    createStudent: builder.mutation<Student, { studentId: string, student: StudentForm }>({
+      query: (params) => ({
+        url: `/${DATABASE_NEIMARK_ID}/collections/${COLLECTION_PROFILES_ID}/documents`,
+        method: 'POST',
+        body: {data: params.student, documentId: params.studentId},
+      })
+    }),
+    deleteStudent: builder.mutation<Student, { id: string }>({
+      query: (params) => ({
+        url: `/${DATABASE_NEIMARK_ID}/collections/${COLLECTION_PROFILES_ID}/documents/${params.id}`,
+        method: 'DELETE',
       })
     })
   })
@@ -73,5 +94,8 @@ export const studentApi = createApi({
 export const {
   useGetAllStudentsWithPaginationMutation,
   useGetAllStudentsMutation,
+  useCreateStudentMutation,
+  useDeleteStudentMutation,
+  useUpdatePublicationFieldsMutation,
   useGetStudentMutation
 } = studentApi

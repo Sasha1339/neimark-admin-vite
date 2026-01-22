@@ -58,4 +58,5 @@
     z-index: 110;
     flex-direction: row;
     justify-content: end;
+    gap: 10px
 }

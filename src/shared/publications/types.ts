@@ -7,8 +7,8 @@ export interface Publication {
   featured_image_url: string;
   published_at: string;
   gallery_urls: string[];
-  is_important: string;
-  status: string;
+  is_important: boolean;
+  status?: 'published' | 'unpublished';
   content: string;
 }
 

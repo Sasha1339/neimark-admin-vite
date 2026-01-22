@@ -13,7 +13,7 @@ import {
   useUpdatePublicationFieldsMutation
 } from "@/middlewares/publication.ts";
 
-import {withURLAppwriteStorage} from "@/shared/images/functions.ts";
+import {todayMoreDate, withURLAppwriteStorage} from "@/shared/images/functions.ts";
 import {useApiPublicationImage} from "@/shared/images/hooks/useApiPublicationImage.ts";
 
 type Props = {}
@@ -70,12 +70,14 @@ export const EditPublication: FC<Props> = ({...props}) => {
           .filter((e) => !e.error && e.data !== undefined)
           .map((e) => withURLAppwriteStorage(e.data.$id));
         const { files, ...dataWithoutFiles } = data;
+        dataWithoutFiles.status = todayMoreDate(dataWithoutFiles.published_at) ? 'published' : 'unpublished';
         updatePublicationFields({
           publicationId: params.id,
           publication: {...dataWithoutFiles, gallery_urls: [...imagesUrls, ...data.gallery_urls], featured_image_url: imagesUrls[0]}
         });
       } else {
         const { files, ...dataWithoutFiles } = data;
+        dataWithoutFiles.status = todayMoreDate(dataWithoutFiles.published_at) ? 'published' : 'unpublished';
         updatePublicationFields({publicationId: params.id, publication: dataWithoutFiles});
       }
 

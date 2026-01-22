@@ -1,18 +1,20 @@
-import type {Publication} from "@/shared/publications/types.ts";
 import {createSlice} from "@reduxjs/toolkit";
-import {publicationApi} from "@/middlewares/publication.ts";
 import type {Student} from "@/shared/students/types.ts";
 import {studentApi} from "@/middlewares/student.ts";
+import type {DocumentFile} from "@/shared/documents/types.ts";
+import {documentApi} from "@/middlewares/document.ts";
 
 type StudentState = {
   students: Student[];
   currentStudent: Student | null;
+  studentDocuments: DocumentFile[] | null;
   total: number;
 }
 
 const initialState: StudentState = {
   students: [],
   currentStudent: null,
+  studentDocuments: [],
   total: 0
 }
 
@@ -26,25 +28,26 @@ export const student = createSlice({
   },
   selectors: {
     currentStudent: (state: StudentState) => state.currentStudent,
+    studentDocuments: (state: StudentState) => state.studentDocuments,
     allStudents: (state: StudentState) => state.students,
     total: (state: StudentState) => state.total,
   },
   extraReducers: (builder) => {
     builder.addMatcher(studentApi.endpoints.getAllStudents.matchFulfilled, (state, action) => {
-      state.publications = action.payload.documents;
+      state.students = action.payload.documents;
       state.total = action.payload.total;
     })
-    builder.addMatcher(publicationApi.endpoints.getAllPublicationsWithPagination.matchFulfilled, (state, action) => {
-      state.publications = [...state.publications, ...action.payload.documents];
+    builder.addMatcher(studentApi.endpoints.getAllStudentsWithPagination.matchFulfilled, (state, action) => {
+      state.students = [...state.students, ...action.payload.documents];
       state.total = action.payload.total;
     })
-    builder.addMatcher(publicationApi.endpoints.getPublication.matchFulfilled, (state, action) => {
-      state.currentPublication = action.payload
+    builder.addMatcher(studentApi.endpoints.getStudent.matchFulfilled, (state, action) => {
+      state.currentStudent = action.payload
     })
-    builder.addMatcher(publicationApi.endpoints.updatePublicationFields.matchFulfilled, (state, action) => {
-      state.currentPublication = action.payload
+    builder.addMatcher(documentApi.endpoints.getAllDocumentsById.matchFulfilled, (state, action) => {
+      state.studentDocuments = action.payload.documents;
     })
   }
 });
 
-exp
+export const { reducer: studentReducer, actions: studentActions, selectors: studentSelectors } = student

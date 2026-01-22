@@ -3,13 +3,13 @@ import styles from './select-panel-editor.module.css';
 import {IconSvg} from "@/components/shared/icon-svg/icon-svg.tsx";
 
 export interface SelectOption {
-  value: string;
+  value: string | number;
   label: string;
 }
 
 export interface Props {
   value?: string;
-  onChange?: (value: string) => void;
+  onChange?: (value: string | number) => void;
   onBlur?: () => void;
   label?: string;
   error?: string;
@@ -28,7 +28,7 @@ export const SelectPanelEditor: FC<Props> = ({
   const element = useRef<HTMLDivElement>(null)
 
 
-  const onChangeValue = (value: string) => {
+  const onChangeValue = (value: string | number) => {
     onChange?.(value);
   }
 

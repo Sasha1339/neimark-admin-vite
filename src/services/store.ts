@@ -7,17 +7,21 @@ import {publicationApi} from "@/middlewares/publication.ts";
 import {publicationReducer} from "@/services/publication.ts";
 import {imageApi} from "@/middlewares/image.ts";
 import {studentApi} from "@/middlewares/student.ts";
+import {studentReducer} from "@/services/student.ts";
+import {documentApi} from "@/middlewares/document.ts";
 
 export function createAppStore(preloadedState = {}) {
   return configureStore({
     reducer: {
       user: userReducer,
       publication: publicationReducer,
+      student: studentReducer,
       authApi: authApi.reducer,
       userApi: userApi.reducer,
       publicationApi: publicationApi.reducer,
       imageApi: imageApi.reducer,
       studentApi: studentApi.reducer,
+      documentApi: documentApi.reducer,
     },
     preloadedState,
     middleware: (getDefaultMiddleware) =>
@@ -27,6 +31,7 @@ export function createAppStore(preloadedState = {}) {
         .concat(publicationApi.middleware)
         .concat(imageApi.middleware)
         .concat(studentApi.middleware)
+        .concat(documentApi.middleware)
   })
 }
 

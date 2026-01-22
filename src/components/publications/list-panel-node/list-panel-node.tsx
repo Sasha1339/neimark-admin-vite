@@ -26,7 +26,7 @@ export const ListPanelNode: FC<Props> = ({publication, active, onClick, onDelete
       </div>
       <div className={styles.buttons}>
         <Button title={'Редактировать'} size={'small'} color={'main-purple'} onClick={onClick}/>
-        <Button title={'Удалить'} size={'small'} color={'main-red'} onClick={onDelete}/>
+        <Button title={'Удалить'} size={'small'} color={'main-red'} onClick={onDelete} disabled={true}/>
       </div>
     </div>
   )

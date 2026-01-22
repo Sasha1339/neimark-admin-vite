@@ -19,10 +19,17 @@ export function formatDateWithoutTime(line: string): string {
   return date.toLocaleDateString('ru-RU');
 }
 
-export const getFullName = (student: Student) => {
-  return `${student.first_name} ${student.last_name}` + (student.patronymic ?? '');
+export const getFullName = (student: {first_name: string, last_name: string, patronymic?: string | null}) => {
+  return `${student.first_name} ${student.last_name}` + (student.patronymic ? ` ${student.patronymic}` : '');
 };
 
 export const getNameRoom = (room: Room) => {
   return `Корпус ${room.building}, комната ${room.number}`
+}
+
+export function splitByNonLetters(str: string) {
+  // \W+ - все не-буквенные символы (включая цифры, пунктуацию и т.д.)
+  // [^a-zA-Z]+ - все символы, кроме букв латинского алфавита
+  // [^a-zA-Zа-яА-Я]+ - включая русские буквы
+  return str.split(/[^a-zA-Zа-яА-Я]+/).filter((word: string) => word.length > 0);
 }

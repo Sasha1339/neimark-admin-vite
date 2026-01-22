@@ -7,4 +7,5 @@ export const PROJECT_ID = 'neimark';
 export const DATABASE_NEIMARK_ID = 'neimark_db';
 export const COLLECTION_PUBLICATION_ID = 'news';
 export const COLLECTION_PROFILES_ID = 'profiles';
+export const COLLECTION_PROFILE_DOCUMENTS_ID = 'profile_documents';
 export const BUCKET_NEWS_MEDIA_ID = 'news_media';

@@ -5,16 +5,18 @@ import {InputEditor} from "@/components/shared/input-editor/input-editor.tsx";
 import {Button} from "@/components/shared/button/button.tsx";
 import {SelectPanelEditor} from "@/components/shared/select-panel-editor/select-panel-editor.tsx";
 import {DocumentsEditor} from "@/components/shared/documents-editor/documents-editor.tsx";
+import type {DocumentFile} from "@/shared/documents/types.ts";
 
 type Props = {
   mode: 'create' | 'update';
   control: Control<any>;
+  documents?: DocumentFile[] | null;
   onSave: () => void;
+  onDelete?: () => void;
 }
 
 
-
-export const StudentsForm: FC<Props> = ({mode, onSave, control, ...props}) => {
+export const StudentsForm: FC<Props> = ({mode, onSave, onDelete, documents, control, ...props}) => {
 
   const optionsDirection = useMemo(() => ([
     {
@@ -35,48 +37,29 @@ export const StudentsForm: FC<Props> = ({mode, onSave, control, ...props}) => {
     }
   ]), [])
 
-  const documents = useMemo(() => ([
-    {
-      name: '123',
-      date: '2027-02-17T07:00:00.000Z'
-    },
-    {
-      name: '123',
-      date: '2027-02-17T07:00:00.000Z'
-    },
-    {
-      name: '123',
-      date: '2027-02-17T07:00:00.000Z'
-    },
-    {
-      name: '123',
-      date: '2027-02-17T07:00:00.000Z'
-    }
-  ]), [])
-
   const optionsCourse = useMemo(() => ([
     {
-      value: '1',
+      value: 1,
       label: '1 курс'
     },
     {
-      value: '2',
+      value: 2,
       label: '2 курс'
     },
     {
-      value: '3',
+      value: 3,
       label: '3 курс'
     },
     {
-      value: '4',
+      value: 4,
       label: '4 курс'
     },
     {
-      value: '5',
+      value: 5,
       label: '5 курс'
     },
     {
-      value: '6',
+      value: 6,
       label: '6 курс'
     }
   ]), [])
@@ -88,18 +71,21 @@ export const StudentsForm: FC<Props> = ({mode, onSave, control, ...props}) => {
           <div className={styles.main_header_text}>Личные данные студента</div>
         </div>
         <div className={styles.main_field}>
-          <Controller name={'lastname'} control={control} render={({field, fieldState}) => (
-            <InputEditor {...field} error={fieldState.error?.message?.toString()} label={'Фамилия'} placeholder={'Введите фамилию'}/>
+          <Controller name={'last_name'} control={control} render={({field, fieldState}) => (
+            <InputEditor {...field} error={fieldState.error?.message?.toString()} label={'Фамилия'}
+                         placeholder={'Введите фамилию'}/>
           )}/>
         </div>
         <div className={styles.main_field}>
-          <Controller name={'firstname'} control={control} render={({field, fieldState}) => (
-            <InputEditor {...field} error={fieldState.error?.message?.toString()} label={'Имя'} placeholder={'Введите имя'}/>
+          <Controller name={'first_name'} control={control} render={({field, fieldState}) => (
+            <InputEditor {...field} error={fieldState.error?.message?.toString()} label={'Имя'}
+                         placeholder={'Введите имя'}/>
           )}/>
         </div>
         <div className={styles.main_field}>
           <Controller name={'patronymic'} control={control} render={({field, fieldState}) => (
-            <InputEditor {...field} error={fieldState.error?.message?.toString()} label={'Отчество'} placeholder={'Введите отчество'}/>
+            <InputEditor {...field} error={fieldState.error?.message?.toString()} label={'Отчество'}
+                         placeholder={'Введите отчество'}/>
           )}/>
         </div>
         <div className={styles.main_header}>
@@ -107,12 +93,14 @@ export const StudentsForm: FC<Props> = ({mode, onSave, control, ...props}) => {
         </div>
         <div className={styles.main_field}>
           <Controller name={'email'} control={control} render={({field, fieldState}) => (
-            <InputEditor {...field} error={fieldState.error?.message?.toString()} label={'E-mail'} placeholder={'Введите email'}/>
+            <InputEditor {...field} error={fieldState.error?.message?.toString()} label={'E-mail'}
+                         placeholder={'Введите email'}/>
           )}/>
         </div>
         <div className={styles.main_field}>
-          <Controller name={'phone'} control={control} render={({field, fieldState}) => (
-            <InputEditor {...field} error={fieldState.error?.message?.toString()} label={'Телефон'} placeholder={'Введите телефон'}/>
+          <Controller name={'phone_number'} control={control} render={({field, fieldState}) => (
+            <InputEditor {...field} error={fieldState.error?.message?.toString()} label={'Телефон'}
+                         placeholder={'Введите телефон'}/>
           )}/>
         </div>
         <div className={styles.main_header}>
@@ -120,32 +108,38 @@ export const StudentsForm: FC<Props> = ({mode, onSave, control, ...props}) => {
         </div>
         <div className={styles.main_field}>
           <Controller name={'university'} control={control} render={({field, fieldState}) => (
-            <InputEditor {...field} error={fieldState.error?.message?.toString()} label={'Университет'} placeholder={'Введите наименование университета'}/>
+            <InputEditor {...field} error={fieldState.error?.message?.toString()} label={'Университет'}
+                         placeholder={'Введите наименование университета'}/>
           )}/>
         </div>
         <div className={styles.main_field}>
           <Controller name={'faculty'} control={control} render={({field, fieldState}) => (
-            <InputEditor {...field} error={fieldState.error?.message?.toString()} label={'Факультет'} placeholder={'Введите наименование факультета'}/>
+            <InputEditor {...field} error={fieldState.error?.message?.toString()} label={'Факультет'}
+                         placeholder={'Введите наименование факультета'}/>
           )}/>
         </div>
         <div className={styles.main_field}>
-          <Controller name={'direction'} control={control} render={({field, fieldState}) => (
-            <SelectPanelEditor {...field} error={fieldState.error?.message?.toString()} label={'Направление подготовки'} options={optionsDirection}/>
+          <Controller name={'field_of_study'} control={control} render={({field, fieldState}) => (
+            <SelectPanelEditor {...field} error={fieldState.error?.message?.toString()} label={'Направление подготовки'}
+                               options={optionsDirection}/>
           )}/>
         </div>
         <div className={styles.main_field}>
-          <Controller name={'stream'} control={control} render={({field, fieldState}) => (
-            <InputEditor {...field} error={fieldState.error?.message?.toString()} label={'Поток'} placeholder={'Введите поток'}/>
+          <Controller name={'cohort'} control={control} render={({field, fieldState}) => (
+            <InputEditor {...field} error={fieldState.error?.message?.toString()} label={'Поток'}
+                         placeholder={'Введите поток'}/>
           )}/>
         </div>
         <div className={styles.main_field}>
           <Controller name={'group'} control={control} render={({field, fieldState}) => (
-            <InputEditor {...field} error={fieldState.error?.message?.toString()} label={'Группа'} placeholder={'Введите группу'}/>
+            <InputEditor {...field} error={fieldState.error?.message?.toString()} label={'Группа'}
+                         placeholder={'Введите группу'}/>
           )}/>
         </div>
         <div className={styles.main_field}>
-          <Controller name={'course'} control={control} render={({field, fieldState}) => (
-            <SelectPanelEditor {...field} error={fieldState.error?.message?.toString()} label={'Курс'} options={optionsCourse}/>
+          <Controller name={'year_of_study'} control={control} render={({field, fieldState}) => (
+            <SelectPanelEditor {...field} error={fieldState.error?.message?.toString()} label={'Курс'}
+                               options={optionsCourse}/>
           )}/>
         </div>
         <div className={styles.main_header}>
@@ -153,31 +147,39 @@ export const StudentsForm: FC<Props> = ({mode, onSave, control, ...props}) => {
         </div>
         <div className={styles.main_field}>
           <Controller name={'building'} control={control} render={({field, fieldState}) => (
-            <InputEditor {...field} error={fieldState.error?.message?.toString()} label={'Корпус'} placeholder={'Введите корпус проживания'}/>
+            <InputEditor {...field} error={fieldState.error?.message?.toString()} label={'Корпус'}
+                         placeholder={'Введите корпус проживания'}/>
           )}/>
         </div>
         <div className={styles.main_field}>
-          <Controller name={'room'} control={control} render={({field, fieldState}) => (
-            <InputEditor {...field} error={fieldState.error?.message?.toString()} label={'Комната'} placeholder={'Введите комнату проживания'}/>
+          <Controller name={'room_number'} control={control} render={({field, fieldState}) => (
+            <InputEditor {...field} error={fieldState.error?.message?.toString()} label={'Комната'}
+                         placeholder={'Введите комнату проживания'}/>
           )}/>
         </div>
         <div className={styles.main_field}>
-          <Controller name={'additionally'} control={control} render={({field, fieldState}) => (
-            <InputEditor {...field} error={fieldState.error?.message?.toString()} label={'Дополнительно'} placeholder={''}/>
+          <Controller name={'residence_comment'} control={control} render={({field, fieldState}) => (
+            <InputEditor {...field} error={fieldState.error?.message?.toString()} label={'Дополнительно'}
+                         placeholder={''}/>
           )}/>
         </div>
-        <div className={styles.main_header}>
-          <div className={styles.main_header_text}>Документы</div>
-        </div>
-        <div className={styles.documents}>
-          {documents.map((e, i) => (
-            <DocumentsEditor key={i} document={e} />
-          ))}
-        </div>
+        {documents && documents.length > 0 && <>
+          <div className={styles.main_header}>
+            <div className={styles.main_header_text}>Документы</div>
+          </div>
+          <div className={styles.documents}>
+            {documents.map((e) => (
+              <DocumentsEditor key={e.$id} document={e}/>
+            ))}
+          </div>
+        </>}
       </div>
-      <div className={styles.button_panel}>
-        <Button title={'Сохранить'} size={'small'} onClick={onSave}/>
-      </div>
+      {mode === 'update' ? <div className={styles.button_panel}>
+        <Button title={'Сохранить изменения'} size={'small'} onClick={onSave}/>
+        <Button title={'Удалить студента'} size={'small'} color={'main-red'} onClick={onDelete} disabled={true}/>
+      </div> : <div className={styles.button_panel}>
+        <Button title={'Создать студента'} size={'small'} onClick={onSave}/>
+      </div>}
     </>
   )
 }

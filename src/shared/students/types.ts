@@ -1,22 +1,47 @@
 export interface Student {
+  $id: string;
+  $createdAt: string;
+  $updatedAt: string;
+  email: string;
   last_name: string;
   first_name: string;
-  patronymic: string;
+  patronymic: string | null;
   full_name: string;
   phone_number: string;
   avatar_url: string;
+  faculty: string | null;
+  group: string | null;
+  building: string | null;
+  room_number: string | null;
+  university: string | null;
+  field_of_study: string | null;
+  cohort: string | null;
+  year_of_study: number | null;
+  residence_comment: string | null;
+  is_admin: boolean;
+  user_role: Role;
+  resident_type: ResidentType;
+}
+
+export interface StudentForm {
+  last_name: string;
+  first_name: string;
+  patronymic?: string;
+  full_name?: string;
+  email: string;
+  phone_number: string;
   faculty: string;
   group: string;
   building: string;
   room_number: string;
   university: string;
   field_of_study: string;
-  cohort: string;
-  year_of_study: string;
-  resident_comment: string;
-  is_admin: boolean;
-  user_role: Role;
-  resident_type: ResidentType;
+  cohort?: string;
+  year_of_study: number;
+  residence_comment?: string;
+  is_admin?: boolean;
+  user_role?: Role;
+  resident_type?: ResidentType;
 }
 
 export enum Role {
