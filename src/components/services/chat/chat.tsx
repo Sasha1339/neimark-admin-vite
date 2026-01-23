@@ -6,27 +6,31 @@ import {useParams} from "react-router-dom";
 import {useAppSelector} from "@/services/store.ts";
 import {serviceSelectors} from "@/services/service.ts";
 import {CONCIERGE_SYSTEM_ID} from "@/shared/services/const.ts";
-import {useGetAllMessagesByChatMutation, useGetChatMutation} from "@/middlewares/service.ts";
+import {
+  useCreateMessageMutation,
+  useGetAllMessagesByChatMutation,
+  useGetChatMutation,
+  useUpdateStatusServiceByIdMutation
+} from "@/middlewares/service.ts";
+import {ServiceStatus} from "@/shared/services/types.ts";
+import {prepareMessage} from "@/shared/services/chat/fucntions.ts";
+import {ID} from "appwrite";
 
 const actions = [
   {
-    command: 'cancel',
+    command: ServiceStatus.CANCELLED,
     label: 'Отозвать услугу'
   },
   {
-    command: 'edit_date',
-    label: 'Переназначить дату'
-  },
-  {
-    command: 'processing',
+    command: ServiceStatus.PENDING,
     label: 'Выполняется'
   },
   {
-    command: 'done',
+    command: ServiceStatus.COMPLETED,
     label: 'Выполнено'
   },
   {
-    command: 'set_self',
+    command: ServiceStatus.ACCEPTED,
     label: 'Назначить себя'
   }
 ]
@@ -37,18 +41,32 @@ type Props = {
 
 export const Chat: FC<Props> = () => {
 
-  const params = useParams<{id: string}>();
+  const params = useParams<{serviceId: string; chatId: string}>();
   const messages = useAppSelector(serviceSelectors.chatMessages);
   const [getMessages] = useGetAllMessagesByChatMutation();
+  const [sendMessage] = useCreateMessageMutation();
+  const [updateStatus] = useUpdateStatusServiceByIdMutation();
   const [getChat] = useGetChatMutation();
   const [openOptions, setOpenOptions] = useState(false);
 
+
+
   useEffect(() => {
-    if (params.id) {
-      getChat({chatId: params.id});
-      getMessages({chatId: params.id})
+    if (params.chatId) {
+      getChat({chatId: params.chatId});
+      getMessages({chatId: params.chatId})
     }
-  }, [params.id]);
+  }, [params.chatId]);
+
+  const onSelectStatus = (option: {command: ServiceStatus, label: string}) => {
+    if (params.chatId && params.serviceId) {
+      const message = prepareMessage(option.command, params.chatId)
+      if (message) {
+        updateStatus({status: option.command, serviceId: params.serviceId});
+        sendMessage({messageId: ID.unique(), message})
+      }
+    }
+  }
 
   return (
     <div className={styles.main}>
@@ -67,7 +85,7 @@ export const Chat: FC<Props> = () => {
           <div className={styles.list_options}>
             <div className={styles.title}>Быстрые действия</div>
             {actions.map((e, i) => (
-              <div className={styles.option} key={i}>{e.label}</div>
+              <div className={styles.option} key={i} onClick={() => onSelectStatus(e)}>{e.label}</div>
             ))}
           </div>
         </div>

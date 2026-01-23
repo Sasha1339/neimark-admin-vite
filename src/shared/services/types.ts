@@ -27,15 +27,21 @@ export interface MessageModel {
   $id: string;
   $createdAt: string;
   $updatedAt: string;
-  conversion_id: string;
+  conversation_id: string;
   content: string;
   sender_id: string;
   sender_name: string;
   message_type: string;
-  description: string;
 }
 
-
+export interface MessageForm {
+  conversation_id: string;
+  content: string;
+  sender_id: string;
+  sender_name: string;
+  message_type: string;
+  created_at: string;
+}
 
 export enum ServiceStatus {
   'PENDING' = 'pending',

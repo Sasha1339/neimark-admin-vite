@@ -45,6 +45,16 @@ export const service = createSlice({
     builder.addMatcher(serviceApi.endpoints.getChat.matchFulfilled, (state, action) => {
       state.currentChat = action.payload;
     })
+    builder.addMatcher(serviceApi.endpoints.updateStatusServiceById.matchFulfilled, (state, action) => {
+      state.services = state.services.map(service =>
+        service.$id === action.payload.$id
+          ? { ...service, ...action.payload }
+          : service
+      );
+    })
+    builder.addMatcher(serviceApi.endpoints.createMessage.matchFulfilled, (state, action) => {
+      state.messages = [...state.messages, action.payload];
+    })
   }
 });
 

@@ -53,22 +53,22 @@ export const RouterModel = () => {
             </Route>
             <Route path="services" element={<ServicesPage/>}>
               <Route path="cleaning" element={<Cleaning/>}>
-                <Route path=":id" element={<Chat/>}/>
+                <Route path=":serviceId/:chatId" element={<Chat/>}/>
               </Route>
               <Route path="dry-cleaner" element={<DryCleaner/>}>
-                <Route path=":id" element={<Chat/>}/>
+                <Route path=":serviceId/:chatId" element={<Chat/>}/>
               </Route>
               <Route path="linen" element={<Linen/>}>
-                <Route path=":id" element={<Chat/>}/>
+                <Route path=":serviceId/:chatId" element={<Chat/>}/>
               </Route>
               <Route path="laundry" element={<Laundry/>}>
-                <Route path=":id" element={<Chat/>}/>
+                <Route path=":serviceId/:chatId" element={<Chat/>}/>
               </Route>
               <Route path="master" element={<Master/>}>
-                <Route path=":id" element={<Chat/>}/>
+                <Route path=":serviceId/:chatId" element={<Chat/>}/>
               </Route>
               <Route path="management-company" element={<ManagementCompany/>}>
-                <Route path=":id" element={<Chat/>}/>
+                <Route path=":serviceId/:chatId" element={<Chat/>}/>
               </Route>
             </Route>
           </Route>
