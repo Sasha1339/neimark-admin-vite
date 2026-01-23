@@ -18,6 +18,7 @@ import {Laundry} from "@/components/services/laundry/laundry.tsx";
 import {Master} from "@/components/services/master/master.tsx";
 import App from "@/App.tsx";
 import {DocumentsViewer} from "@/components/documents/documents-viewer/documents-viewer.tsx";
+import {ManagementCompany} from "@/components/services/management-company/management-company.tsx";
 
 export const RouterModel = () => {
   return (
@@ -64,6 +65,9 @@ export const RouterModel = () => {
                 <Route path=":id" element={<Chat/>}/>
               </Route>
               <Route path="master" element={<Master/>}>
+                <Route path=":id" element={<Chat/>}/>
+              </Route>
+              <Route path="management-company" element={<ManagementCompany/>}>
                 <Route path=":id" element={<Chat/>}/>
               </Route>
             </Route>

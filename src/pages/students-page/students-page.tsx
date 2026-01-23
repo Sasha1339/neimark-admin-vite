@@ -49,7 +49,7 @@ export const StudentsPage: FC<Page> = ({...props}) => {
                     <ListPanel isSearching={true} onUploadYet={onUploadYet} uploadYetButtonShow={total > students.length} onSearchChange={(e) => setSearch(e)} width={400} onClickNewButton={() => navigate(`/students/new`)} isNewButton={true} titleNewButton={'Добавить студента'}>
                       {students.filter(filterStudents).map((e) => (
                         <Link  key={e.$id} to={`/students/${e.$id}`} className={styles.link}>
-                          <ListPanelNode name={e.full_name ?? getFullName(e)} active={location.pathname.includes(e.$id)} description={`${e.group ? e.group + ',' : ''} ${e.university ?? ''}`}/>
+                          <ListPanelNode name={e.full_name ?? getFullName(e)} active={location.pathname.includes(e.$id)} description={`${e.group ? e.group + ',' : '<группа не задана>,'} ${e.university ?? '<университет не задан>'}`}/>
                         </Link>
                       ))}
                     </ListPanel>

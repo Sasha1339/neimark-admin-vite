@@ -25,6 +25,10 @@ const links = [
   {
     title: 'Химчистка',
     url: 'dry-cleaner'
+  },
+  {
+    title: 'Управляющая компания',
+    url: 'management-company'
   }
 ];
 
