@@ -9,7 +9,7 @@ import type {Publication} from "@/shared/publications/types.ts";
 type Props = {
   publication: Publication;
   active?: boolean;
-  onClick: () => void;
+  onClick?: () => void;
   onDelete: () => void;
 }
 

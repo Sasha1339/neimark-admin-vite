@@ -1,0 +1,1 @@
+export const CONCIERGE_SYSTEM_ID = 'concierge_system'

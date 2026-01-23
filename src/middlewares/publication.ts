@@ -26,7 +26,7 @@ export const publicationApi = createApi({
         const queries = [
           Query.limit(50),
           Query.offset(0),
-          Query.orderDesc("$updatedAt"),
+          Query.orderDesc("$createdAt"),
           Query.select(["*"]),
         ];
 
@@ -46,7 +46,7 @@ export const publicationApi = createApi({
         const queries = [
           Query.limit(50),
           Query.offset(params.offset),
-          Query.orderDesc("$updatedAt"),
+          Query.orderDesc("$createdAt"),
           Query.select(["*"]),
         ];
 

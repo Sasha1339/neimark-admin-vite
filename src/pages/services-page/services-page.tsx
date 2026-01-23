@@ -2,7 +2,8 @@ import {type FC, useEffect, useState} from "react";
 import {ExpandPanel} from "@/components/shared/expand-panel/expand-panel.tsx";
 import {ListPanel} from "@/components/shared/list-panel/list-panel.tsx";
 import {ListPanelNode} from "@/components/services/list-panel-node/list-panel-node.tsx";
-import {Outlet, useLocation, useNavigate} from "react-router-dom";
+import {Link, Outlet, useLocation, useNavigate} from "react-router-dom";
+import styles from './services-page.module.css';
 
 const links = [
   {
@@ -33,7 +34,6 @@ export const ServicesPage: FC<Page> = ({...props}) => {
 
   const [search, setSearch] = useState('');
   const location = useLocation();
-  const navigate = useNavigate();
 
 
   return (
@@ -41,11 +41,12 @@ export const ServicesPage: FC<Page> = ({...props}) => {
                  bodyPanel={
                    <ListPanel onSearchChange={(e) => setSearch(e)} width={400}>
                      {links.map((e, i) => (
-                       <ListPanelNode active={location.pathname.includes(e.url)} key={i} link={e} onSelect={() => navigate(`/services/${e.url}`)}/>
+                       <Link  key={i} to={`/services/${e.url}`} className={styles.link}>
+                         <ListPanelNode active={location.pathname.includes(e.url)} link={e}/>
+                       </Link>
                      ))}
                    </ListPanel>
                  }>
-      {/*{documentId && <DocumentsViewer src={withUrlDocuments(documentId)} />}*/}
       <Outlet />
     </ExpandPanel>
   )

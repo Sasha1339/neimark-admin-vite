@@ -23,8 +23,8 @@ export const getFullName = (student: {first_name: string, last_name: string, pat
   return `${student.first_name} ${student.last_name}` + (student.patronymic ? ` ${student.patronymic}` : '');
 };
 
-export const getNameRoom = (room: Room) => {
-  return `Корпус ${room.building}, комната ${room.number}`
+export const getNameRoom = (service: {building: string, room_number: string}) => {
+  return `Корпус ${service.building}, комната ${service.room_number}`
 }
 
 export function splitByNonLetters(str: string) {

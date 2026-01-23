@@ -7,8 +7,6 @@ import {
 import {Query} from "appwrite";
 import type {Response} from "@/shared/types.ts";
 import {type DocumentFile, DocumentStatus} from "@/shared/documents/types.ts";
-import type {Student, StudentForm} from "@/shared/students/types.ts";
-import type {Publication} from "@/shared/publications/types.ts";
 
 export const documentApi = createApi({
   reducerPath: 'documentApi',
@@ -27,7 +25,7 @@ export const documentApi = createApi({
         const queries = [
           Query.limit(50),
           Query.offset(0),
-          Query.orderDesc("$updatedAt"),
+          Query.orderDesc("$createdAt"),
           Query.select(["*"]),
           Query.equal("profile_id", params.profileId)
         ];
@@ -48,7 +46,7 @@ export const documentApi = createApi({
         const queries = [
           Query.limit(50),
           Query.offset(0),
-          Query.orderDesc("$updatedAt"),
+          Query.orderDesc("$createdAt"),
           Query.select(["*"])
         ];
 
@@ -68,7 +66,7 @@ export const documentApi = createApi({
         const queries = [
           Query.limit(50),
           Query.offset(params.offset),
-          Query.orderDesc("$updatedAt"),
+          Query.orderDesc("$createdAt"),
           Query.select(["*"])
         ];
 

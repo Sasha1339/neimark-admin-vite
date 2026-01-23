@@ -2,12 +2,13 @@ import {type FC, useEffect, useState} from "react";
 import {ExpandPanel} from "@/components/shared/expand-panel/expand-panel.tsx";
 import {ListPanel} from "@/components/shared/list-panel/list-panel.tsx";
 import {ListPanelNode} from "@/components/students/list-panel-node/list-panel-node.tsx";
-import {Outlet, useLocation, useNavigate} from "react-router-dom";
+import {Link, Outlet, useLocation, useNavigate} from "react-router-dom";
 import {useGetAllStudentsMutation, useGetAllStudentsWithPaginationMutation} from "@/middlewares/student.ts";
 import {useAppSelector} from "@/services/store.ts";
 import {studentSelectors} from "@/services/student.ts";
 import type {Student} from "@/shared/students/types.ts";
 import {getFullName, splitByNonLetters} from "@/shared/functions.ts";
+import styles from './students-page.module.css';
 
 type Page = {}
 
@@ -47,7 +48,9 @@ export const StudentsPage: FC<Page> = ({...props}) => {
                  bodyPanel={
                     <ListPanel isSearching={true} onUploadYet={onUploadYet} uploadYetButtonShow={total > students.length} onSearchChange={(e) => setSearch(e)} width={400} onClickNewButton={() => navigate(`/students/new`)} isNewButton={true} titleNewButton={'Добавить студента'}>
                       {students.filter(filterStudents).map((e) => (
-                        <ListPanelNode name={e.full_name ?? getFullName(e)} active={location.pathname.includes(e.$id)} description={`${e.group ? e.group + ',' : ''} ${e.university ?? ''}`} key={e.$id} onSelect={() => navigate(`/students/${e.$id}`)}/>
+                        <Link  key={e.$id} to={`/students/${e.$id}`} className={styles.link}>
+                          <ListPanelNode name={e.full_name ?? getFullName(e)} active={location.pathname.includes(e.$id)} description={`${e.group ? e.group + ',' : ''} ${e.university ?? ''}`}/>
+                        </Link>
                       ))}
                     </ListPanel>
                 }>

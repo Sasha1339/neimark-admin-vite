@@ -11,7 +11,7 @@ import {EditStudent} from "@/components/students/edit-student/edit-student.tsx";
 import {DocumentsPage} from "@/pages/documents-page/documents-page.tsx";
 import {ServicesPage} from "@/pages/services-page/services-page.tsx";
 import {Cleaning} from "@/components/services/cleaning/cleaning.tsx";
-import {Chat} from "@/components/chat/chat.tsx";
+import {Chat} from "@/components/services/chat/chat.tsx";
 import {DryCleaner} from "@/components/services/dry-cleaner/dry-cleaner.tsx";
 import {Linen} from "@/components/services/linen/linen.tsx";
 import {Laundry} from "@/components/services/laundry/laundry.tsx";

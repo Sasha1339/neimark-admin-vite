@@ -8,4 +8,7 @@ export const DATABASE_NEIMARK_ID = 'neimark_db';
 export const COLLECTION_PUBLICATION_ID = 'news';
 export const COLLECTION_PROFILES_ID = 'profiles';
 export const COLLECTION_PROFILE_DOCUMENTS_ID = 'profile_documents';
+export const COLLECTION_CONCIERGE_REQUESTS_ID = 'concierge_requests';
+export const COLLECTION_MESSAGES_ID = 'messages';
+export const COLLECTION_CONVERSIONS_ID = 'conversations';
 export const BUCKET_NEWS_MEDIA_ID = 'news_media';
