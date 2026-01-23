@@ -10,22 +10,22 @@ const links = [
     title: 'Клининг',
     url: 'cleaning'
   },
-  {
-    title: 'Смена белья',
-    url: 'linen'
-  },
+  // {
+  //   title: 'Смена белья',
+  //   url: 'linen'
+  // },
   {
     title: 'Вызов мастера',
     url: 'master'
   },
-  {
-    title: 'Стирка',
-    url: 'laundry'
-  },
-  {
-    title: 'Химчистка',
-    url: 'dry-cleaner'
-  },
+  // {
+  //   title: 'Стирка',
+  //   url: 'laundry'
+  // },
+  // {
+  //   title: 'Химчистка',
+  //   url: 'dry-cleaner'
+  // },
   {
     title: 'Управляющая компания',
     url: 'management-company'
@@ -41,7 +41,7 @@ export const ServicesPage: FC<Page> = ({...props}) => {
 
 
   return (
-    <ExpandPanel expandWidth={650} headerTitle={'Все услуги'}
+    <ExpandPanel headerTitle={'Все услуги'}
                  bodyPanel={
                    <ListPanel onSearchChange={(e) => setSearch(e)} width={400}>
                      {links.map((e, i) => (

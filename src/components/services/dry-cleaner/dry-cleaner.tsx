@@ -38,7 +38,7 @@ export const DryCleaner: FC<Page> = ({...props}) => {
 
 
   return (
-    <ExpandPanel expandWidth={650} headerTitle={'Химчистка'}
+    <ExpandPanel headerTitle={'Химчистка'}
                  bodyPanel={
                    <ListPanel isSearching={true} onSearchChange={(e) => setSearch(e)} width={400} placeholder={'Поиск заявки'}>
                      {links.map((e, i) => (

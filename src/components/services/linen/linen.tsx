@@ -38,7 +38,7 @@ export const Linen: FC<Page> = ({...props}) => {
 
 
   return (
-    <ExpandPanel expandWidth={650} headerTitle={'Смена белья'}
+    <ExpandPanel headerTitle={'Смена белья'}
                  bodyPanel={
                    <ListPanel isSearching={true} onSearchChange={(e) => setSearch(e)} width={400} placeholder={'Поиск заявки'}>
                      {links.map((e, i) => (

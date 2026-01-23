@@ -66,6 +66,7 @@ export const Chat: FC<Props> = () => {
         sendMessage({messageId: ID.unique(), message})
       }
     }
+    setOpenOptions(false)
   }
 
   return (

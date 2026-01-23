@@ -29,7 +29,7 @@ export const ManagementCompany: FC<Page> = ({...props}) => {
   }
 
   return (
-    <ExpandPanel expandWidth={650} headerTitle={'Вызов мастера'}
+    <ExpandPanel headerTitle={'Упр. компания'}
                  bodyPanel={
                    <ListPanel isSearching={true} onUploadYet={onUploadYet} uploadYetButtonShow={total > services.length} onSearchChange={(e) => setSearch(e)} width={400}
                               placeholder={'Поиск заявки'}>

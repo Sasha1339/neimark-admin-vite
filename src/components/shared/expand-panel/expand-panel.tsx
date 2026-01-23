@@ -6,7 +6,7 @@ import {useLocation} from "react-router-dom";
 import clsx from "clsx";
 
 type Props = {
-  expandWidth: number;
+  expandHeader?: number;
   headerTitle?: string;
   links?: Record<string, string>;
   bodyPanel?: ReactNode
@@ -14,7 +14,7 @@ type Props = {
   onLogout?: () => void;
 }
 
-export const ExpandPanel: FC<Props & PropsWithChildren> = ({expandWidth, onClick, onLogout, bodyPanel, headerTitle, children, links, ...props}) => {
+export const ExpandPanel: FC<Props & PropsWithChildren> = ({expandHeader , onClick, onLogout, bodyPanel, headerTitle, children, links, ...props}) => {
 
   const [expanded, setExpanded] = useState(true);
   const panel = useRef<HTMLDivElement>(null);
@@ -36,7 +36,7 @@ export const ExpandPanel: FC<Props & PropsWithChildren> = ({expandWidth, onClick
       <nav ref={panel} className={headerTitle ? styles.panel_sub_navigation : styles.panel_navigation}>
         {!headerTitle ? <div className={styles.up_icon}>
           <IconSvg name={'expand-button'} onClick={() => setExpanded(prev => !prev)}  color={'main-white'}/>
-        </div> : <div className={styles.up_icon_with_title}>
+        </div> : <div className={styles.up_icon_with_title}  style={{maxWidth: expandHeader ?? '100%'}}>
           <div className={styles.title}>{headerTitle}</div>
           <IconSvg name={'arrow'} rotate={expanded ? 180 : 0} onClick={() => setExpanded(prev => !prev)}/>
         </div>}

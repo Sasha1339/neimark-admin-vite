@@ -74,6 +74,7 @@
     overflow: hidden;
     color: var(--color-white-text);
     transition: 0.5s;
+    max-height: 95%;
 }
 
 .link {

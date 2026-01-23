@@ -47,7 +47,7 @@ export const DocumentsPage: FC<Page> = ({...props}) => {
   }
 
   return (
-    <ExpandPanel expandWidth={650} headerTitle={'Документы'}
+    <ExpandPanel headerTitle={'Документы'}
                  bodyPanel={
                    <ListPanel onUploadYet={onUploadYet} uploadYetButtonShow={total > documents.length}
                               isSearching={true} onSearchChange={(e) => setSearch(e)} width={400}>

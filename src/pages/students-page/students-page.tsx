@@ -44,7 +44,7 @@ export const StudentsPage: FC<Page> = ({...props}) => {
   }
   
   return (
-    <ExpandPanel expandWidth={650} headerTitle={'Студенты'}
+    <ExpandPanel headerTitle={'Студенты'}
                  bodyPanel={
                     <ListPanel isSearching={true} onUploadYet={onUploadYet} uploadYetButtonShow={total > students.length} onSearchChange={(e) => setSearch(e)} width={400} onClickNewButton={() => navigate(`/students/new`)} isNewButton={true} titleNewButton={'Добавить студента'}>
                       {students.filter(filterStudents).map((e) => (

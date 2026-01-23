@@ -8,7 +8,7 @@ import {useLogoutMutation} from "@/middlewares/user.ts";
 const links = {
   publications: 'Публикации',
   services: 'Консьерж-сервис',
-  timetable: 'Редактор расписания',
+  // timetable: 'Редактор расписания',
   students: 'Студенты',
   documents: 'Документы'
 }
@@ -35,7 +35,7 @@ export const AppHeader: FC<Props> = ({...props}) => {
         </div>
       </header>
       <main className={styles.main}>
-        <ExpandPanel expandWidth={300} links={links} onClick={(link) => {
+        <ExpandPanel links={links} onClick={(link) => {
           navigate(`/${link}`)
         }} onLogout={onLogout}>
           <Outlet/>

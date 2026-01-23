@@ -29,7 +29,7 @@ export const Cleaning: FC<Page> = ({...props}) => {
   }
 
   return (
-    <ExpandPanel expandWidth={650} headerTitle={'Клининг'}
+    <ExpandPanel headerTitle={'Клининг'}
                  bodyPanel={
                    <ListPanel isSearching={true} onUploadYet={onUploadYet} uploadYetButtonShow={total > services.length} onSearchChange={(e) => setSearch(e)} width={400} placeholder={'Поиск заявки'}>
                      {services.map((e) => (

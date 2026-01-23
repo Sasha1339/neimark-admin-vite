@@ -40,7 +40,7 @@ export const PublicationsPage: FC<Page> = ({...props}) => {
   }
   
   return (
-    <ExpandPanel expandWidth={650} headerTitle={'Все публикации'}
+    <ExpandPanel headerTitle={'Все публикации'}
                  bodyPanel={
                     <ListPanel width={600} onUploadYet={onUploadYet} uploadYetButtonShow={total > publications.length} isNewButton={true} titleNewButton={'Добавить новую публикацию'} onClickNewButton={() => navigate('/publications/new')}>
                       {publications.map((e) => (

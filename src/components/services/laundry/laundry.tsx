@@ -38,7 +38,7 @@ export const Laundry: FC<Page> = ({...props}) => {
 
 
   return (
-    <ExpandPanel expandWidth={650} headerTitle={'Стирка'}
+    <ExpandPanel headerTitle={'Стирка'}
                  bodyPanel={
                    <ListPanel isSearching={true} onSearchChange={(e) => setSearch(e)} width={400} placeholder={'Поиск заявки'}>
                      {links.map((e, i) => (
