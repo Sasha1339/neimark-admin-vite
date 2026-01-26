@@ -8,7 +8,6 @@ export const authApi = createApi({
     baseUrl: APPWRITE_ACCOUNT_API_V1,
     prepareHeaders: (headers) => {
       headers.set('X-Appwrite-Project', PROJECT_ID);
-      headers.set('Origin', 'https://cloud.appwrite.io');
       return headers;
     }
   }),
