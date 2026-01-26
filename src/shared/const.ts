@@ -1,7 +1,15 @@
-export const APPWRITE_API_V1 = `/v1`;
-export const APPWRITE_ACCOUNT_API_V1 = `/v1/account`;
-export const APPWRITE_DATABASE_API_V1 = `/v1/databases`;
-export const APPWRITE_STORAGE_API_V1 = `/v1/storage`;
+const API_URL = import.meta.env.PROD
+  ? 'https://cloud.appwrite.io'
+  : '';
+
+const API_STORAGE_URL = import.meta.env.PROD
+  ? 'https://fra.cloud.appwrite.io'
+  : '';
+
+export const APPWRITE_API_V1 = `${API_STORAGE_URL}/v1`;
+export const APPWRITE_ACCOUNT_API_V1 = `${API_URL}/v1/account`;
+export const APPWRITE_DATABASE_API_V1 = `${API_URL}/v1/databases`;
+export const APPWRITE_STORAGE_API_V1 = `${API_URL}/v1/storage`;
 export const APPWRITE_STORAGE_API_V1_WITH_DOMAIN = 'https://fra.cloud.appwrite.io/v1/storage';
 export const PROJECT_ID = 'neimark';
 export const DATABASE_NEIMARK_ID = 'neimark_db';
