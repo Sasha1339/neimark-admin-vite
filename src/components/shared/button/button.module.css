@@ -1,0 +1,79 @@
+.main {
+    font-family: Biform, sans-serif;
+    font-size: var(--font-size-form-label);
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid var(--color-white-text);
+    background-color: transparent;
+    color: var(--color-white-text);
+    gap: 10px;
+    transition: 0.5s;
+    white-space: nowrap;
+}
+
+.medium_size {
+    font-size: var(--font-size-form-input);
+}
+
+.small_size {
+    font-size: var(--font-size-button-panel);
+}
+
+.main:hover {
+    background-color: var(--color-white-text);
+    color: var(--main-background);
+}
+
+.purple_color {
+    border: 1px solid var(--color-main-purple);
+    color: var(--color-main-purple);
+}
+
+.purple_color:hover {
+    background: var(--color-main-purple);
+    color: var(--color-white-text);
+}
+
+.red_color {
+    border: 1px solid var(--color-main-red);
+    color: var(--color-white-text);
+    background: var(--color-main-red);
+}
+
+.red_color:hover {
+    background: var(--color-white-text);
+    color: var(--color-main-red);
+
+}
+
+.green_color {
+    border: 1px solid var(--color-main-green);
+    color: var(--color-main-green);
+}
+
+.green_color:hover {
+    background: var(--color-main-green);
+    color: var(--color-white-text);
+
+}
+
+.orange_color {
+    border: 1px solid var(--color-active-text);
+    color: var(--color-active-text);
+}
+
+.orange_color:hover {
+    background: var(--color-active-text);
+}
+
+.main:active {
+    opacity: 0.9;
+    transform: scale(1.03);
+}
+
+.main:disabled {
+    border: 1px solid var(--color-white-text-opacity-25);
+    background-color: transparent;
+    color: var(--color-white-text-opacity-25);
+}

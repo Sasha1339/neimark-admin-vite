@@ -1,0 +1,19 @@
+:root {
+
+    --main-font-family: 'Bifrom';
+
+    --font-size-title-panel: 32px;
+    --font-size-form-label: 24px;
+    --font-size-link-panel: 20px;
+    --font-size-description: 12px;
+    --font-size-form-input: 20px;
+    --font-size-form-error: 14px;
+    --font-size-button-panel: 16px;
+    --font-size-form-header: 32px;
+    --font-size-form-subheader: 20px;
+
+    --font-size-form-label-16: 16px;
+    --font-size-form-input-16: 16px;
+    --font-size-form-input-14: 14px;
+
+}

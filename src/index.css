@@ -1,0 +1,18 @@
+@import "./styles/colors.css";
+@import "./styles/size.css";
+@import "./styles/z-index.css";
+@import "./styles/font-sizes.css";
+
+@font-face {
+    font-family: 'Biform';
+    src: local('Biform'), url('./fonts/Paratype - Biform Regular.otf') format('opentype');
+}
+
+
+body, #root {
+    background-color: var(--main-background);
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+}
