@@ -3,3 +3,23 @@ services:
     restart: always
     image: neimark-admin-image:latest
     container_name: neimark-admin-container
+    networks:
+      - appwrite
+    labels:
+      - traefik.enable=true
+      - traefik.constraint-label-stack=appwrite
+      - traefik.docker.network=appwrite
+      - traefik.http.services.neimark_admin.loadbalancer.server.port=80
+      #http
+      - traefik.http.routers.neimark_admin_http.entrypoints=appwrite_web
+      - traefik.http.routers.neimark_admin_http.rule=Host(`admin.neimark.ukmira.ru`)
+      - traefik.http.routers.neimark_admin_http.service=neimark_admin
+      # https
+      - traefik.http.routers.neimark_admin_https.entrypoints=appwrite_websecure
+      - traefik.http.routers.neimark_admin_https.rule=Host(`admin.neimark.ukmira.ru`)
+      - traefik.http.routers.neimark_admin_https.service=neimark_admin
+      - traefik.http.routers.neimark_admin_https.tls=true
+
+networks:
+  appwrite:
+    external: true
