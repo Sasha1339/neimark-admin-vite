@@ -1,0 +1,5 @@
+services:
+  neimark-admin:
+    restart: always
+    image: neimark-admin-image:latest
+    container_name: neimark-admin-container
