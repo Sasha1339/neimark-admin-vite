@@ -1,9 +1,9 @@
 const API_URL = import.meta.env.PROD
-  ? 'https://cloud.appwrite.io'
+  ? 'https://127.0.0.1'
   : '';
 
 const API_STORAGE_URL = import.meta.env.PROD
-  ? 'https://fra.cloud.appwrite.io'
+  ? 'https://127.0.0.1'
   : '';
 
 export const APPWRITE_API_V1 = `${API_STORAGE_URL}/v1`;
