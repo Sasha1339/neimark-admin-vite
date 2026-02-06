@@ -10,10 +10,13 @@ import {
 } from "@/middlewares/publication.ts";
 import {useAppSelector} from "@/services/store.ts";
 import {publicationSelectors} from "@/services/publication.ts";
+import {useMediaQuery} from "@/shared/hooks/useMobileVersion.ts";
 
 type Page = {}
 
 export const PublicationsPage: FC<Page> = ({...props}) => {
+
+  const { isMobile } = useMediaQuery('(width <= 1600px)')
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -42,7 +45,7 @@ export const PublicationsPage: FC<Page> = ({...props}) => {
   return (
     <ExpandPanel headerTitle={'Все публикации'}
                  bodyPanel={
-                    <ListPanel width={600} onUploadYet={onUploadYet} uploadYetButtonShow={total > publications.length} isNewButton={true} titleNewButton={'Добавить новую публикацию'} onClickNewButton={() => navigate('/publications/new')}>
+                    <ListPanel width={isMobile ? 400 : 600} onUploadYet={onUploadYet} uploadYetButtonShow={total > publications.length} isNewButton={true} titleNewButton={'Добавить новую публикацию'} onClickNewButton={() => navigate('/publications/new')}>
                       {publications.map((e) => (
                         <ListPanelNode publication={e} key={e.$id} onDelete={() => onDelete(e.$id)} onClick={() => navigate(`/publications/${e.$id}`)} active={location.pathname.includes(e.$id)}/>
                       ))}

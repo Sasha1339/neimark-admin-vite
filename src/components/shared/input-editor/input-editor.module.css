@@ -9,6 +9,9 @@
 .main_label {
     font-size: var(--font-size-form-label);
     color: var(--color-white-text-opacity-50);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .main_input_wrapper {

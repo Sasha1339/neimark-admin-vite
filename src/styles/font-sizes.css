@@ -16,4 +16,20 @@
     --font-size-form-input-16: 16px;
     --font-size-form-input-14: 14px;
 
+    @media (max-width: 1600px) {
+        --font-size-title-panel: 28px;
+        --font-size-form-label: 20px;
+        --font-size-link-panel: 16px;
+        --font-size-description: 10px;
+        --font-size-form-input: 16px;
+        --font-size-form-error: 12px;
+        --font-size-button-panel: 14px;
+        --font-size-form-header: 28px;
+        --font-size-form-subheader: 16px;
+
+        --font-size-form-label-16: 14px;
+        --font-size-form-input-16: 14px;
+        --font-size-form-input-14: 12px;
+    }
+
 }

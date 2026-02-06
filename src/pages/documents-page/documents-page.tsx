@@ -13,10 +13,13 @@ import type {DocumentFile} from "@/shared/documents/types.ts";
 import {getNameDocument, getNameStatus} from "@/shared/documents/functions.ts";
 import {Outlet, useLocation, useNavigate} from "react-router-dom";
 import {splitByNonLetters, splitByNonLettersAndNumber} from "@/shared/functions.ts";
+import {useMediaQuery} from "@/shared/hooks/useMobileVersion.ts";
 
 type Page = {}
 
 export const DocumentsPage: FC<Page> = ({...props}) => {
+
+  const { isMobile } = useMediaQuery('(width <= 1600px)')
 
   const [search, setSearch] = useState('');
   const [getAllDocuments] = useGetAllDocumentsMutation();
@@ -50,7 +53,7 @@ export const DocumentsPage: FC<Page> = ({...props}) => {
     <ExpandPanel headerTitle={'Документы'}
                  bodyPanel={
                    <ListPanel onUploadYet={onUploadYet} uploadYetButtonShow={total > documents.length}
-                              isSearching={true} onSearchChange={(e) => setSearch(e)} width={400}>
+                              isSearching={true} onSearchChange={(e) => setSearch(e)} width={isMobile ? 300 : 400}>
                      {documents.filter(filterStudents).map((e, i) => (
                        <ListPanelNode onApprove={() => approveDocument({documentId: e.$id})}
                                       onReject={() => rejectDocument({documentId: e.$id})} documentData={e} key={i}

@@ -8,10 +8,13 @@ import {useAppSelector} from "@/services/store.ts";
 import {serviceSelectors} from "@/services/service.ts";
 import {useGetAllServicesByTypeMutation, useGetAllServicesByTypeWithPaginationMutation} from "@/middlewares/service.ts";
 import {ServiceType} from "@/shared/services/types.ts";
+import {useMediaQuery} from "@/shared/hooks/useMobileVersion.ts";
 
 type Page = {}
 
 export const Cleaning: FC<Page> = ({...props}) => {
+
+  const { isMobile } = useMediaQuery('(width <= 1600px)')
 
   const [search, setSearch] = useState('');
   const location = useLocation();
@@ -31,7 +34,7 @@ export const Cleaning: FC<Page> = ({...props}) => {
   return (
     <ExpandPanel headerTitle={'Клининг'}
                  bodyPanel={
-                   <ListPanel isSearching={true} onUploadYet={onUploadYet} uploadYetButtonShow={total > services.length} onSearchChange={(e) => setSearch(e)} width={400} placeholder={'Поиск заявки'}>
+                   <ListPanel isSearching={true} onUploadYet={onUploadYet} uploadYetButtonShow={total > services.length} onSearchChange={(e) => setSearch(e)} width={isMobile ? 300 : 400} placeholder={'Поиск заявки'}>
                      {services.map((e) => (
                        <Link  key={e.$id} to={`/services/cleaning/${e.$id}/${e.chat_id}`} className={styles.link}>
                          <ListPanelNode active={location.pathname.includes(e.$id)} service={e}/>

@@ -4,6 +4,7 @@ import {ListPanel} from "@/components/shared/list-panel/list-panel.tsx";
 import {ListPanelNode} from "@/components/services/list-panel-node/list-panel-node.tsx";
 import {Link, Outlet, useLocation, useNavigate} from "react-router-dom";
 import styles from './services-page.module.css';
+import {useMediaQuery} from "@/shared/hooks/useMobileVersion.ts";
 
 const links = [
   {
@@ -36,6 +37,8 @@ type Page = {}
 
 export const ServicesPage: FC<Page> = ({...props}) => {
 
+  const { isMobile } = useMediaQuery('(width <= 1600px)')
+
   const [search, setSearch] = useState('');
   const location = useLocation();
 
@@ -43,7 +46,7 @@ export const ServicesPage: FC<Page> = ({...props}) => {
   return (
     <ExpandPanel headerTitle={'Все услуги'}
                  bodyPanel={
-                   <ListPanel onSearchChange={(e) => setSearch(e)} width={400}>
+                   <ListPanel onSearchChange={(e) => setSearch(e)} width={isMobile ? 300 : 400}>
                      {links.map((e, i) => (
                        <Link  key={i} to={`/services/${e.url}`} className={styles.link}>
                          <ListPanelNode active={location.pathname.includes(e.url)} link={e}/>

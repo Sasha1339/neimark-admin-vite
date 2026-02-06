@@ -8,10 +8,13 @@ import {serviceSelectors} from "@/services/service.ts";
 import {useGetAllServicesByTypeMutation, useGetAllServicesByTypeWithPaginationMutation} from "@/middlewares/service.ts";
 import {ServiceType} from "@/shared/services/types.ts";
 import styles from "./management-company.module.css";
+import {useMediaQuery} from "@/shared/hooks/useMobileVersion.ts";
 
 type Page = {}
 
 export const ManagementCompany: FC<Page> = ({...props}) => {
+
+  const { isMobile } = useMediaQuery('(width <= 1600px)')
 
   const [search, setSearch] = useState('');
   const location = useLocation();
@@ -31,7 +34,7 @@ export const ManagementCompany: FC<Page> = ({...props}) => {
   return (
     <ExpandPanel headerTitle={'Упр. компания'}
                  bodyPanel={
-                   <ListPanel isSearching={true} onUploadYet={onUploadYet} uploadYetButtonShow={total > services.length} onSearchChange={(e) => setSearch(e)} width={400}
+                   <ListPanel isSearching={true} onUploadYet={onUploadYet} uploadYetButtonShow={total > services.length} onSearchChange={(e) => setSearch(e)} width={isMobile ? 300 : 400}
                               placeholder={'Поиск заявки'}>
                      {services.map((e, i) => (
                        <Link key={e.$id} to={`/services/management-company/${e.$id}/${e.chat_id}`} className={styles.link}>

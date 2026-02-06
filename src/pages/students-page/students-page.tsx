@@ -9,10 +9,13 @@ import {studentSelectors} from "@/services/student.ts";
 import type {Student} from "@/shared/students/types.ts";
 import {getFullName, splitByNonLetters} from "@/shared/functions.ts";
 import styles from './students-page.module.css';
+import {useMediaQuery} from "@/shared/hooks/useMobileVersion.ts";
 
 type Page = {}
 
 export const StudentsPage: FC<Page> = ({...props}) => {
+
+  const { isMobile } = useMediaQuery('(width <= 1600px)')
 
   const [search, setSearch] = useState('');
   const navigate = useNavigate();
@@ -46,7 +49,7 @@ export const StudentsPage: FC<Page> = ({...props}) => {
   return (
     <ExpandPanel headerTitle={'Студенты'}
                  bodyPanel={
-                    <ListPanel isSearching={true} onUploadYet={onUploadYet} uploadYetButtonShow={total > students.length} onSearchChange={(e) => setSearch(e)} width={400} onClickNewButton={() => navigate(`/students/new`)} isNewButton={true} titleNewButton={'Добавить студента'}>
+                    <ListPanel isSearching={true} onUploadYet={onUploadYet} uploadYetButtonShow={total > students.length} onSearchChange={(e) => setSearch(e)} width={isMobile ? 300 : 400} onClickNewButton={() => navigate(`/students/new`)} isNewButton={true} titleNewButton={'Добавить студента'}>
                       {students.filter(filterStudents).map((e) => (
                         <Link  key={e.$id} to={`/students/${e.$id}`} className={styles.link}>
                           <ListPanelNode name={e.full_name ?? getFullName(e)} active={location.pathname.includes(e.$id)} description={`${e.group ? e.group + ',' : '<группа не задана>,'} ${e.university ?? '<университет не задан>'}`}/>
